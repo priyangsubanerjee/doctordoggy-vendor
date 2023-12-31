@@ -4,13 +4,13 @@ import React from "react";
 
 function OtherPages() {
   return (
-    <div className="mt-56 px-24">
+    <div className="mt-56 px-6 lg:px-24">
       <p className="text-xs tracking-widest text-center">OTHER SERVICES</p>
       <h1 className="text-2xl font-semibold text-slate-900 text-center mt-2">
         Landed on the wrong page?
       </h1>
       <div className="mt-12">
-        <div className="grid grid-cols-2 gap-5 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:max-w-5xl mx-auto">
           <div className="bg-white border px-2 py-2 h-fit rounded-xl flex items-center">
             <img
               src="https://content.alphapaw.com/wp-content/uploads/2021/02/Pet-Parenting-FAQs-Our-Vet-Answers-the-Most-Common-Questions-on-Pet-Parents-Minds-1.jpg.webp"

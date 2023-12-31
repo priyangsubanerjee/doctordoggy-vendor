@@ -4,12 +4,12 @@ import React from "react";
 function Steps() {
   return (
     <div>
-      <div className="mt-44 px-24">
+      <div className="mt-44 px-6 lg:px-24">
         <p className="text-xs tracking-widest text-center">PROCESS</p>
         <h1 className="text-2xl font-semibold text-slate-900 text-center mt-2">
           Steps to become a partner
         </h1>
-        <div className="flex items-center justify-center mt-12">
+        <div className="flex flex-col lg:flex-row items-center justify-center mt-12">
           <div className="flex flex-col items-center w-60">
             <div className="h-12 w-12 rounded-full border border-black flex items-center justify-center">
               1
@@ -20,7 +20,7 @@ function Steps() {
               quos.
             </p>
           </div>
-          <div className="h-[1px] w-32 bg-black"></div>
+          <div className="lg:h-[1px] h-20 my-4 w-[1px] lg:w-32 bg-black/50"></div>
           <div className="flex flex-col items-center w-60">
             <div className="h-12 w-12 rounded-full border border-black flex items-center justify-center">
               2
@@ -31,7 +31,7 @@ function Steps() {
               quos.
             </p>
           </div>
-          <div className="h-[1px] w-32 bg-black"></div>
+          <div className="lg:h-[1px] h-20 my-4 w-[1px] lg:w-32 bg-black/50"></div>
           <div className="flex flex-col items-center w-60">
             <div className="h-12 w-12 rounded-full border border-black flex items-center justify-center">
               3

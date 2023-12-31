@@ -4,7 +4,14 @@ import React from "react";
 
 function Growth() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 px-6 lg:px-24 mt-28 gap-12">
+    <div className="grid grid-cols-1 lg:grid-cols-2 px-6 lg:px-24 mt-10 lg:mt-28 gap-12">
+      <div className="flex lg:hidden items-end justify-center bg-slate-100 rounded-2xl pt-12">
+        <img
+          className="rounded-2xl w-[50%]"
+          src="https://static.vecteezy.com/system/resources/previews/026/976/738/original/3d-icon-cute-veterinarian-man-with-dog-cartoon-style-on-isolated-transparent-background-generative-ai-png.png"
+          alt=""
+        />
+      </div>
       <div className="flex flex-col justify-center">
         <h1 className="lg:text-xl font-medium text-slate-600 font-poppins">
           Helping you to grow your <br />{" "}
@@ -30,7 +37,7 @@ function Growth() {
           </button>
         </div>
       </div>
-      <div className="flex items-end justify-center bg-slate-100 rounded-2xl pt-12">
+      <div className="hidden lg:flex items-end justify-center bg-slate-100 rounded-2xl pt-12">
         <img
           className="rounded-2xl w-[50%]"
           src="https://static.vecteezy.com/system/resources/previews/026/976/738/original/3d-icon-cute-veterinarian-man-with-dog-cartoon-style-on-isolated-transparent-background-generative-ai-png.png"

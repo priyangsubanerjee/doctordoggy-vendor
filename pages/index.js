@@ -15,10 +15,11 @@ export default function Home() {
       <Navbar />
       <Herosection />
       <Growth />
-      {/* 
       <Steps />
       <Benifits />
-      <OtherPages /> */}
+      {/* 
+      <OtherPages /> 
+      */}
     </main>
   );
 }
