@@ -4,7 +4,7 @@ function Herosection() {
   return (
     <div className="pt-0 lg:pt-0 px-0 lg:px-24">
       <div className="lg:rounded-2xl lg:h-[500px] flex overflow-hidden bg-[url(https://img.freepik.com/free-vector/gradient-blur-pink-blue-abstract-background_53876-117324.jpg)] bg-no-repeat bg-cover">
-        <div className="z-10 flex flex-col text-black my-auto w-full px-5 py-24 lg:py-0">
+        <div className="z-10 flex flex-col text-black my-auto w-full px-5 py-12 lg:py-0">
           <div className="flex flex-col lg:items-center justify-center">
             <p className="text-neutral-800 text-sm text-center lg:text-base">
               Doctordoggy presents
