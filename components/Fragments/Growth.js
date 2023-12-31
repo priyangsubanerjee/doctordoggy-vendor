@@ -4,13 +4,15 @@ import React from "react";
 
 function Growth() {
   return (
-    <div className="grid grid-cols-2 px-24 mt-28 gap-12">
+    <div className="grid grid-cols-1 lg:grid-cols-2 px-6 lg:px-24 mt-28 gap-12">
       <div className="flex flex-col justify-center">
-        <h1 className="text-xl font-semibold text-slate-600 font-poppins">
+        <h1 className="lg:text-xl font-medium text-slate-600 font-poppins">
           Helping you to grow your <br />{" "}
-          <span className="text-6xl text-slate-900 pt-2 block">business.</span>
+          <span className="text-4xl font-semibold lg:text-6xl text-slate-900 pt-3 block">
+            business.
+          </span>
         </h1>
-        <p className="leading-7 mt-4 text-base">
+        <p className="leading-7 lg:leading-8 text-neutral-700 mt-4 text-sm lg:text-base">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
           incidunt dolores repudiandae, explicabo totam voluptatum cupiditate
           deleniti unde aperiam quas odit ea cumque eveniet perspiciatis

@@ -43,9 +43,9 @@ function Navbar() {
           </button>
         </div>
       </div>
-      <div className="h-12 bg-black w-full text-center text-white text-sm font-light flex items-center justify-center">
+      {/* <div className="h-12 bg-black w-full text-center text-white text-sm font-light flex items-center justify-center">
         This website is still under development.
-      </div>
+      </div> */}
     </nav>
   );
 }
