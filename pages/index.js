@@ -11,15 +11,15 @@ import OtherPages from "@/components/Fragments/OtherPages";
 
 export default function Home() {
   return (
-    <main className="pt-12 lg:py-16">
+    <main className="pt-12 lg:pt-16 pb-24">
       <Navbar />
       <Herosection />
       <Growth />
       <Steps />
       <Benifits />
-      {/* 
-      <OtherPages /> 
-      */}
+      <OtherPages />
+      {/*
+       */}
     </main>
   );
 }
