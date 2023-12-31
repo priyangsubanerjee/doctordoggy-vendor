@@ -15,7 +15,7 @@ function Steps() {
               1
             </div>
             <h1 className="font-semibold mt-5">Fill out the form</h1>
-            <p className="text-xs leading-5 mt-2 text-center">
+            <p className="text-xs leading-5 mt-2 text-center text-neutral-500">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
               quos.
             </p>
@@ -26,7 +26,7 @@ function Steps() {
               2
             </div>
             <h1 className="font-semibold mt-5">Approval</h1>
-            <p className="text-xs leading-5 mt-2 text-center">
+            <p className="text-xs leading-5 mt-2 text-center text-neutral-500">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
               quos.
             </p>
@@ -37,13 +37,13 @@ function Steps() {
               3
             </div>
             <h1 className="font-semibold mt-5">Onboarding</h1>
-            <p className="text-xs leading-5 mt-2 text-center">
+            <p className="text-xs leading-5 mt-2 text-center text-neutral-500">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
               quos.
             </p>
           </div>
         </div>
-        <div className="mt-10 flex items-center justify-center text-sm text-blue-600">
+        <div className="mt-16 flex items-center justify-center text-sm text-blue-600">
           <button className="flex items-center space-x-2">
             <span>Apply now</span>
             <Icon icon="uiw:right" />
