@@ -14,7 +14,7 @@ function Steps() {
             <div className="h-12 w-12 rounded-full border border-black flex items-center justify-center">
               1
             </div>
-            <h1 className="font-semibold mt-5">Fill out the form</h1>
+            <h1 className="font-semibold text-lg mt-5">Fill out the form</h1>
             <p className="text-xs leading-5 mt-2 text-center text-neutral-500">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
               quos.
@@ -25,7 +25,7 @@ function Steps() {
             <div className="h-12 w-12 rounded-full border border-black flex items-center justify-center">
               2
             </div>
-            <h1 className="font-semibold mt-5">Approval</h1>
+            <h1 className="font-semibold text-lg mt-5">Approval</h1>
             <p className="text-xs leading-5 mt-2 text-center text-neutral-500">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
               quos.
@@ -36,7 +36,7 @@ function Steps() {
             <div className="h-12 w-12 rounded-full border border-black flex items-center justify-center">
               3
             </div>
-            <h1 className="font-semibold mt-5">Onboarding</h1>
+            <h1 className="font-semibold text-lg mt-5">Onboarding</h1>
             <p className="text-xs leading-5 mt-2 text-center text-neutral-500">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
               quos.

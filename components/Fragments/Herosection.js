@@ -2,8 +2,8 @@ import React from "react";
 
 function Herosection() {
   return (
-    <div className="pt-0 lg:pt-0 px-0 lg:px-24">
-      <div className="lg:rounded-2xl lg:h-[500px] flex overflow-hidden bg-[url(https://img.freepik.com/free-vector/gradient-blur-pink-blue-abstract-background_53876-117324.jpg)] bg-no-repeat bg-cover">
+    <div className="pt-0 lg:pt-0 px-0 md:px-6 lg:px-24">
+      <div className="md:rounded-2xl h-[400px] md:h-[500px] flex overflow-hidden bg-[url(https://img.freepik.com/free-vector/gradient-blur-pink-blue-abstract-background_53876-117324.jpg)] bg-no-repeat bg-cover">
         <div className="z-10 flex flex-col text-black my-auto w-full px-5 py-12 lg:py-0">
           <div className="flex flex-col lg:items-center justify-center">
             <p className="text-neutral-800 text-sm text-center lg:text-base">
@@ -18,11 +18,11 @@ function Herosection() {
               mollitia eveniet debitis sint autem natus rem ipsa dolores
               voluptas inventore assumenda? Velit!
             </p>
-            <div className="lg:flex items-center justify-center lg:space-x-4 mt-6 lg:mt-10 w-full">
+            <div className="flex items-center justify-center space-x-4 mt-6 lg:mt-10 w-full px-6">
               <button className="h-12 text-sm lg:text-base lg:w-fit w-full px-10 block text-black border border-black bg-transparent rounded-md">
                 Learn more
               </button>
-              <button className="h-12 text-sm lg:text-base lg:w-fit w-full mt-3 lg:mt-0 px-10 block text-white border border-black bg-black rounded-md">
+              <button className="h-12 text-sm lg:text-base lg:w-fit w-full px-10 block text-white border border-black bg-black rounded-md">
                 Apply now
               </button>
             </div>
