@@ -2,7 +2,7 @@ import React from "react";
 
 function Herosection() {
   return (
-    <div className="pt-0 lg:pt-0 px-0 md:px-6 lg:px-24">
+    <div className="pt-2 lg:pt-0 px-0 md:px-6 lg:px-24">
       <div className="md:rounded-2xl h-[450px] md:h-[500px] flex overflow-hidden bg-[url(https://img.freepik.com/free-vector/gradient-blur-pink-blue-abstract-background_53876-117324.jpg)] bg-no-repeat bg-cover">
         <div className="z-10 flex flex-col text-black my-auto w-full px-5 py-12 lg:py-0">
           <div className="flex flex-col lg:items-center justify-center">

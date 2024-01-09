@@ -34,11 +34,10 @@ function Navbar() {
           </li>
         </ul>
         <div className="flex items-center">
-          <Avatar name="Junior" />
-          <button
-            onClick={() => setSidebarOpened(true)}
-            className="ml-5 lg:hidden"
-          >
+          <Link href="/login">
+            <Avatar className="bg-neutral-100" size="sm" />
+          </Link>
+          <button className="ml-5 lg:hidden">
             <Icon height={24} icon="clarity:menu-line" />
           </button>
         </div>
