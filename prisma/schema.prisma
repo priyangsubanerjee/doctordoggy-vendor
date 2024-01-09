@@ -11,23 +11,200 @@ datasource db {
 }
 
 model Partner {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  regisNo    String?
-  password   String?
-  address    String
-  pincode    String
-  city       String
-  state      String
-  country    String
-  landmark   String?
-  phone      String
-  email      String?
-  verified   Boolean  @default(false)
-  services   String[]
-  gstin      String?
-  images     String[]
-  staffCount Int
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  regisNo        String?
+  password       String?
+  address        String
+  pincode        String
+  city           String
+  state          String
+  country        String
+  landmark       String?
+  phone          String
+  email          String?   @unique
+  verified       Boolean   @default(false)
+  services       String[]
+  doesHaveClinic Boolean   @default(false)
+  gstin          String?
+  tradeLicense   String?
+  images         String[]
+  staffCount     Int
+  createdAt      DateTime  @default(now())
+  service        Service[]
+}
 
+model Service {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  price        Int
+  partner      Partner  @relation(fields: [partnerEmail], references: [email])
+  partnerEmail String
+  parent       User?    @relation(fields: [parentEmail], references: [email])
+  parentEmail  String?
+  createdAt    DateTime @default(now())
+  pet          Pet      @relation(fields: [petId], references: [id])
+  petId        String   @db.ObjectId
+  dateIn       DateTime
+  dateOut      DateTime
+  timeIn       String
+  timeOut      String
+  status       String
+  notes        String?
+  files        String[]
+}
+
+model File {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  publicId  String
+  url       String   @unique
   createdAt DateTime @default(now())
+}
+
+model User {
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  email         String         @unique
+  name          String
+  phone         String?
+  zipCode       String?
+  address       String?
+  createdAt     DateTime       @default(now())
+  pets          Pet[]
+  vaccines      Vaccination[]
+  prescriptions Prescription[]
+  dewormings    Deworming[]
+  pathologies   Pathology[]
+  tokens        Token[]
+  service       Service[]
+}
+
+model Pet {
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  image         String
+  name          String
+  sex           String?
+  bodyWeight    String?
+  Parent        User?          @relation(fields: [parentEmail], references: [email])
+  parentEmail   String?
+  breed         String
+  dateOfBirth   DateTime
+  color         String?
+  species       String
+  createdBy     String?
+  createdAt     DateTime       @default(now())
+  isPublic      Boolean        @default(true)
+  vaccines      Vaccination[]
+  prescriptions Prescription[]
+  dewormings    Deworming[]
+  pathologies   Pathology[]
+  services      Service[]
+}
+
+model Vaccination {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  image            String
+  pet              Pet       @relation(fields: [petId], references: [id])
+  petId            String    @db.ObjectId
+  Parent           User?     @relation(fields: [parentEmail], references: [email])
+  parentEmail      String?
+  vaccineName      String
+  bodyWeight       String?
+  bodyTemperature  String?
+  files            String[]
+  notes            String?
+  status           String?
+  dueDate          DateTime
+  doneDate         DateTime?
+  doneAt           String?
+  doneBy           String?
+  doctorsSignature String?
+  createdAt        DateTime  @default(now())
+}
+
+model Prescription {
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  image           String?
+  name            String?
+  pet             Pet      @relation(fields: [petId], references: [id])
+  petId           String   @db.ObjectId
+  Parent          User?    @relation(fields: [parentEmail], references: [email])
+  parentEmail     String?
+  reasonOfVisit   String
+  dateOfVisit     DateTime
+  bodyWeight      String?
+  temperature     String?
+  files           String[]
+  notes           String?
+  doctorName      String?
+  doctorSignature String?
+  doctorId        String?
+}
+
+model Deworming {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  image        String
+  pet          Pet       @relation(fields: [petId], references: [id])
+  petId        String    @db.ObjectId
+  Parent       User?     @relation(fields: [parentEmail], references: [email])
+  parentEmail  String?
+  bodyWeight   String?
+  files        String[]
+  medicineName String
+  dosage       String
+  notes        String?
+  status       String?
+  dueDate      DateTime
+  doneDate     DateTime?
+}
+
+model Pathology {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  image        String
+  pet          Pet      @relation(fields: [petId], references: [id])
+  petId        String   @db.ObjectId
+  Parent       User?    @relation(fields: [parentEmail], references: [email])
+  date         DateTime
+  testName     String?
+  parentEmail  String?
+  bodyWeight   String?
+  temperature  String?
+  files        String[]
+  refererredBy String?
+  notes        String?
+  createdAt    DateTime @default(now())
+}
+
+model Breed {
+  id   String  @id @default(auto()) @map("_id") @db.ObjectId
+  name String?
+  type String?
+}
+
+model Token {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  user      User     @relation(fields: [email], references: [email])
+  email     String   @unique
+  tokens    String[]
+  createdAt DateTime @default(now())
+}
+
+model Booster {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  image       String[]
+  description String?
+  createdAt   DateTime @default(now())
+}
+
+model Dewormer {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  type        String
+  image       String[]
+  description String?
+  createdAt   DateTime @default(now())
 }
