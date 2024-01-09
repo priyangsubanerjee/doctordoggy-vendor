@@ -36,7 +36,7 @@ function Login() {
             </Link>
           </button>
         </div>
-        <div className="lg:w-[500px] bg-white  mt-10 border rounded-2xl mx-auto p-6">
+        <form className="lg:w-[500px] bg-white  mt-10 border rounded-2xl mx-auto p-6">
           <div>
             <label className="text-sm text-neutral-500" htmlFor="">
               Enter registered email
@@ -45,6 +45,7 @@ function Login() {
               className="h-12 rounded text-base mt-2"
               radius="sm"
               label="Email"
+              required
             />
           </div>
           <div className="mt-3">
@@ -58,14 +59,20 @@ function Login() {
             />
           </div>
           <div className="flex items-center justify-between mt-7">
-            <button className="text-sm mr-4 text-neutral-600 hover:underline">
+            <button
+              type="button"
+              className="text-sm mr-4 text-neutral-600 hover:underline"
+            >
               Forgot password?
             </button>
-            <Button className="bg-black text-white rounded-md text-sm">
+            <Button
+              type="submit"
+              className="bg-black text-white rounded-md text-sm"
+            >
               Login
             </Button>
           </div>
-        </div>
+        </form>
         <div className="flex flex-col items-center justify-center mt-6">
           <span className="text-sm text-neutral-500">or</span>
           <button className="mt-6 text-neutral-700 text-sm flex items-center justify-center hover:underline">
