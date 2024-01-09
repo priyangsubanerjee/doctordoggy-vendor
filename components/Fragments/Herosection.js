@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 function Herosection() {
@@ -19,9 +20,11 @@ function Herosection() {
               voluptas inventore assumenda? Velit!
             </p>
             <div className="flex items-center justify-center space-x-4 mt-6 lg:mt-10 w-full px-6">
-              <button className="h-12 text-sm lg:text-base lg:w-fit w-full px-10 block text-black border border-black bg-transparent rounded-md">
-                Learn more
-              </button>
+              <Link href="/login">
+                <button className="h-12 text-sm lg:text-base lg:w-fit w-full px-10 block text-black border border-black bg-transparent rounded-md">
+                  Login
+                </button>
+              </Link>
               <button className="h-12 text-sm lg:text-base lg:w-fit w-full px-10 block text-white border border-black bg-black rounded-md">
                 Apply now
               </button>

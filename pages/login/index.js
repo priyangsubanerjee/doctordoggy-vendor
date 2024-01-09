@@ -10,7 +10,7 @@ function Login() {
       <div className="relative">
         <img
           src="https://img.freepik.com/premium-vector/holographic-foil-pastel-rainbow-gradient-abstract-soft-pastel-colors-backdrop_961004-334.jpg"
-          className="w-full h-[300px] object-cover absolute top-0"
+          className="w-full h-[300px] object-cover absolute top-0 inset-x-0"
           alt=""
         />
         <div className="absolute inset-0 w-full h-[300px] bg-gradient-to-b from-white to-transparent"></div>
