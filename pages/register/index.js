@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Spacer } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
 import { Autocomplete, AutocompleteItem, Avatar } from "@nextui-org/react";
@@ -12,7 +12,7 @@ export default function Apply() {
 
   const Address = () => {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-5">
         <div>
           <label className="text-sm text-neutral-500" htmlFor="">
             Store name
@@ -100,7 +100,7 @@ export default function Apply() {
 
   const Contact = () => {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2  gap-7 lg:gap-5">
         <div>
           <label className="text-sm text-neutral-500" htmlFor="">
             Store email
@@ -204,8 +204,8 @@ export default function Apply() {
 
   const Services = () => {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-        <div className="col-span-2">
+      <div className="grid grid-cols-1 w-full md:grid-cols-2 gap-7 lg:gap-5">
+        <div className="lg:col-span-2 w-full">
           <CheckboxGroup
             label={
               <label className="text-sm text-neutral-500 block pb-2" htmlFor="">
@@ -250,7 +250,7 @@ export default function Apply() {
             type="time"
           />
         </div>
-        <div className="col-span-2">
+        <div className="lg:col-span-2 w-full">
           <CheckboxGroup
             label={
               <label className="text-sm text-neutral-500 block pb-2" htmlFor="">
@@ -276,8 +276,7 @@ export default function Apply() {
             <Checkbox value="boarding">Sunday</Checkbox>
           </CheckboxGroup>
         </div>
-
-        <div className="col-span-2 pt-3">
+        <div className="lg:col-span-2 pt-3">
           <RadioGroup
             defaultValue="no"
             label={
@@ -328,7 +327,7 @@ export default function Apply() {
         />
         <div className="absolute inset-0 w-full h-[300px] bg-gradient-to-b from-white to-transparent"></div>
       </div>
-      <div className="z-10 relative pt-20 lg:pt-24   px-4">
+      <div className="z-10 relative pt-20 lg:pt-24 px-4">
         <h1 className="text-2xl lg:text-3xl font-semibold text-center">
           Apply for partners program
         </h1>
@@ -370,6 +369,7 @@ export default function Apply() {
           </div>
         </div>
       </div>
+      <Spacer y={50} />
     </div>
   );
 }
