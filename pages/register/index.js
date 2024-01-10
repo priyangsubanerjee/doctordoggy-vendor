@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Icon } from "@iconify/react";
 import { Button, Input, Spacer } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
@@ -9,6 +10,15 @@ import React from "react";
 
 export default function Apply() {
   const [active, setActive] = React.useState(0);
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
   const Address = () => {
     return (
@@ -250,55 +260,41 @@ export default function Apply() {
             type="time"
           />
         </div>
-        <div className="lg:col-span-2 w-full">
+        <div className="lg:col-span-2 w-full pt-2">
           <CheckboxGroup
             label={
               <label className="text-sm text-neutral-500 block pb-2" htmlFor="">
-                Select your working hours
+                Select your working days
               </label>
             }
             orientation="horizontal"
             color="primary"
             size="sm"
           >
-            <Checkbox className="mr-2" value="grooming">
-              Monday
-            </Checkbox>
-            <Checkbox className="mr-2" value="walking">
-              Tuesday
-            </Checkbox>
-            <Checkbox className="mr-2" value="training">
-              Wednesday
-            </Checkbox>
-            <Checkbox value="boarding">Thursday</Checkbox>
-            <Checkbox value="boarding">Friday</Checkbox>
-            <Checkbox value="boarding">Saturday</Checkbox>
-            <Checkbox value="boarding">Sunday</Checkbox>
+            {days.map((day, index) => (
+              <Checkbox key={index} className="mr-1" value={day}>
+                {day}
+              </Checkbox>
+            ))}
           </CheckboxGroup>
         </div>
-        <div className="lg:col-span-2 pt-3">
-          <RadioGroup
-            defaultValue="no"
-            label={
-              <label
-                className="pb-2 leading-7 text-sm text-neutral-500"
-                htmlFor=""
-              >
-                I hereby declare that the information provided above is true to
-                my knowledge and I agree to the terms and conditions of the
-                partners program.
-              </label>
-            }
-            orientation="horizontal"
-            size="sm"
+        <div className="lg:col-span-2 pt-3 flex items-center">
+          <Checkbox
+            radius="full"
+            onValueChange={(checked) => {
+              console.log(checked);
+            }}
+            value="boarding"
+            className="inline-block"
+            id="terms"
+          />
+          <label
+            className="leading-7 -mt-[1px] text-sm text-neutral-500"
+            htmlFor="terms"
           >
-            <Radio className="mr-1 mt-1" value="yes">
-              Yes
-            </Radio>
-            <Radio className="mr-1 mt-1" value="no">
-              No
-            </Radio>
-          </RadioGroup>
+            I hereby declare that the information provided above is true to my
+            knowledge.
+          </label>
         </div>
       </div>
     );
@@ -318,7 +314,7 @@ export default function Apply() {
   };
 
   return (
-    <div>
+    <div className="pt-20 lg:pt-24">
       <div className="relative">
         <img
           src="https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdHAyNTYtYmFja2dyb3VuZC0yNS5qcGc.jpg"
@@ -327,7 +323,7 @@ export default function Apply() {
         />
         <div className="absolute inset-0 w-full h-[300px] bg-gradient-to-b from-white to-transparent"></div>
       </div>
-      <div className="z-10 relative pt-20 lg:pt-24 px-4">
+      <div className="z-10 relative px-4">
         <h1 className="text-2xl lg:text-3xl font-semibold text-center">
           Apply for partners program
         </h1>
@@ -350,7 +346,7 @@ export default function Apply() {
         </div>
         <div className="lg:w-[900px]  bg-white mt-10 border rounded-2xl mx-auto p-6">
           <StepComponent />
-          <div className="flex items-center justify-between mt-7">
+          <div className="flex items-center justify-between mt-10">
             <button
               disabled={active === 0}
               onClick={() => active > 0 && setActive(active - 1)}

@@ -6,16 +6,16 @@ import React from "react";
 
 function Login() {
   return (
-    <div>
+    <div className="pt-20 lg:pt-24 ">
       <div className="relative">
         <img
           src="https://img.freepik.com/premium-vector/holographic-foil-pastel-rainbow-gradient-abstract-soft-pastel-colors-backdrop_961004-334.jpg"
-          className="w-full h-[300px] object-cover absolute top-0 inset-x-0"
+          className="w-full h-[250px] object-cover absolute top-0 inset-x-0"
           alt=""
         />
         <div className="absolute inset-0 w-full h-[300px] bg-gradient-to-b from-white to-transparent"></div>
       </div>
-      <div className="z-10 relative pt-20 lg:pt-24 px-4">
+      <div className="z-10 relative px-4">
         <h1 className="text-2xl lg:text-3xl font-semibold text-center">
           Partners Login
         </h1>
@@ -44,7 +44,7 @@ function Login() {
             <Input
               className="h-12 rounded text-base mt-2"
               radius="sm"
-              label="Email"
+              placeholder="Email"
               required
             />
           </div>
@@ -55,10 +55,10 @@ function Login() {
             <Input
               className="h-12 rounded text-base mt-2"
               radius="sm"
-              label="Password"
+              placeholder="Password"
             />
           </div>
-          <div className="flex items-center justify-between mt-7">
+          <div className="flex items-center justify-between mt-10">
             <button
               type="button"
               className="text-sm mr-4 text-neutral-600 hover:underline"
@@ -73,7 +73,7 @@ function Login() {
             </Button>
           </div>
         </form>
-        <div className="flex flex-col items-center justify-center mt-6">
+        <div className="flex flex-col items-center justify-center mt-8">
           <span className="text-sm text-neutral-500">or</span>
           <button className="mt-6 text-neutral-700 text-sm flex items-center justify-center hover:underline">
             <Icon height={23} className="mr-2" icon="iconoir:mail" />
