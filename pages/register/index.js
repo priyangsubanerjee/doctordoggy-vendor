@@ -246,6 +246,7 @@ export default function Apply() {
             className="h-12 rounded text-base mt-2"
             radius="sm"
             placeholder="Password"
+            defaultValue="09:00"
             type="time"
           />
         </div>
@@ -256,6 +257,7 @@ export default function Apply() {
           <Input
             className="h-12 rounded text-base mt-2"
             radius="sm"
+            defaultValue="22:00"
             placeholder="Password"
             type="time"
           />
@@ -278,23 +280,26 @@ export default function Apply() {
             ))}
           </CheckboxGroup>
         </div>
-        <div className="lg:col-span-2 pt-3 flex items-center">
-          <Checkbox
-            radius="full"
-            onValueChange={(checked) => {
-              console.log(checked);
-            }}
-            value="boarding"
-            className="inline-block"
-            id="terms"
-          />
-          <label
-            className="leading-7 -mt-[1px] text-sm text-neutral-500"
-            htmlFor="terms"
-          >
-            I hereby declare that the information provided above is true to my
-            knowledge.
-          </label>
+        <div className="lg:col-span-2 pt-5 flex items-start">
+          <div className="pt-[2px]">
+            <Checkbox
+              radius="full"
+              onValueChange={(checked) => {
+                console.log(checked);
+              }}
+              value="boarding"
+              id="terms"
+            />
+          </div>
+          <div>
+            <label
+              className="leading-7 text-sm text-neutral-500"
+              htmlFor="terms"
+            >
+              I hereby declare that the information provided above is true to my
+              knowledge.
+            </label>
+          </div>
         </div>
       </div>
     );
