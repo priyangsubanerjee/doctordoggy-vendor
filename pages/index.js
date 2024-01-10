@@ -15,7 +15,7 @@ import Faq from "@/components/Fragments/Faq";
 
 export default function Home() {
   return (
-    <main>
+    <main className="pt-12 lg:pt-16">
       <Head>
         <title>Partners Program</title>
       </Head>

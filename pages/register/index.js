@@ -328,7 +328,7 @@ export default function Apply() {
         />
         <div className="absolute inset-0 w-full h-[300px] bg-gradient-to-b from-white to-transparent"></div>
       </div>
-      <div className="z-10 relative pt-16 lg:pt-16 px-4">
+      <div className="z-10 relative pt-16 lg:pt-24   px-4">
         <h1 className="text-2xl lg:text-3xl font-semibold text-center">
           Apply for partners program
         </h1>
