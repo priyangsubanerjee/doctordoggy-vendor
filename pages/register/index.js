@@ -100,7 +100,7 @@ export default function Apply() {
 
   const Contact = () => {
     return (
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div>
           <label className="text-sm text-neutral-500" htmlFor="">
             Store email
@@ -204,7 +204,7 @@ export default function Apply() {
 
   const Services = () => {
     return (
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <div className="col-span-2">
           <CheckboxGroup
             label={
