@@ -25,9 +25,11 @@ function Herosection() {
                   Login
                 </button>
               </Link>
-              <button className="h-12 text-sm lg:text-base lg:w-fit w-full px-10 block text-white border border-black bg-black rounded-md">
-                Apply now
-              </button>
+              <Link href="/register">
+                <button className="h-12 text-sm lg:text-base lg:w-fit w-full px-10 block text-white border border-black bg-black rounded-md">
+                  Apply now
+                </button>
+              </Link>
             </div>
           </div>
         </div>
