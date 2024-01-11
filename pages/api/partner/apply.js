@@ -1,5 +1,11 @@
-export default function handler(req, res) {
+import { PartnerApplication } from "@/prisma/partner";
+
+export default async function handler(req, res) {
   const partner = req.body;
   console.log(partner);
-  res.status(200).json({ name: "John Doe" });
+  let { success, data } = await PartnerApplication(partner);
+  res.status(200).json({
+    success,
+    data,
+  });
 }

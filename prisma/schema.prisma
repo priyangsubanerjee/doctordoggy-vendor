@@ -30,9 +30,10 @@ model Partner {
   images         String[]
   staffCount     String?
   workingDays    String[]
-  workingHours   String[]
+  servicesPromised String[]
   services       Service[]
   createdAt      DateTime  @default(now())
+  agreedTerms    Boolean  @default(false)
 }
 
 model Service {

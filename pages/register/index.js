@@ -1,11 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
+import { ApplicationSuccessTemplates } from "@/templates/ApplicationSuccess";
 import { Icon } from "@iconify/react";
 import { Button, Input, Spacer } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
+import axios from "axios";
 
 import Link from "next/link";
 import React from "react";
+import toast from "react-hot-toast";
 
 const Address = ({ partnerData, setPartnerData }) => {
   return (
@@ -308,7 +311,7 @@ const Services = ({ partnerData, setPartnerData }) => {
                     }}
                   />
                 </div>
-                <div className="ml-1">
+                <div>
                   <p>{obj.day}</p>
                 </div>
               </div>
@@ -374,6 +377,30 @@ const Services = ({ partnerData, setPartnerData }) => {
   );
 };
 
+const Success = () => {
+  return (
+    <div className="flex flex-col items-center justify-center py-7">
+      <img
+        src="https://static-00.iconduck.com/assets.00/success-icon-512x512-qdg1isa0.png"
+        alt=""
+        className="h-20"
+      />
+      <h1 className="text-xl font-semibold mt-7 tracking-wide">
+        Application success
+      </h1>
+      <p className="text-sm max-w-sm text-neutral-500 mt-3 text-center leading-7">
+        Your application has been submitted successfully. We will get back to
+        you as soon as possible.
+      </p>
+      <Link href={"/"}>
+        <Button className="bg-neutral-800 text-white rounded-md mt-7 px-6">
+          Close
+        </Button>
+      </Link>
+    </div>
+  );
+};
+
 const StepComponent = ({ partnerData, setPartnerData, active }) => {
   switch (active) {
     case 0:
@@ -388,6 +415,8 @@ const StepComponent = ({ partnerData, setPartnerData, active }) => {
       return (
         <Services partnerData={partnerData} setPartnerData={setPartnerData} />
       );
+    case 3:
+      return <Success />;
     default:
       return (
         <Address partnerData={partnerData} setPartnerData={setPartnerData} />
@@ -396,6 +425,7 @@ const StepComponent = ({ partnerData, setPartnerData, active }) => {
 };
 
 export default function Apply() {
+  const [loading, setLoading] = React.useState(false);
   const [active, setActive] = React.useState(0);
   const [partnerData, setPartnerData] = React.useState({
     name: "",
@@ -460,10 +490,97 @@ export default function Apply() {
     agreedTerms: false,
   });
 
-  const [days, setDays] = React.useState([]);
+  function PerformValidations() {
+    if (partnerData.name === "") {
+      toast.error("Please enter store name");
+      setActive(0);
+      return false;
+    } else if (partnerData.address === "") {
+      toast.error("Please enter store address");
+      setActive(0);
+      return false;
+    } else if (partnerData.pincode === "") {
+      toast.error("Please enter pincode");
+      setActive(0);
+      return false;
+    } else if (partnerData.city === "") {
+      toast.error("Please enter city");
+      setActive(0);
+      return false;
+    } else if (partnerData.state === "") {
+      toast.error("Please enter state");
+      setActive(0);
+      return false;
+    } else if (partnerData.country === "") {
+      toast.error("Please enter country");
+      setActive(0);
+      return false;
+    } else if (partnerData.phone === "") {
+      toast.error("Please enter phone number");
+      setActive(1);
+      return false;
+    } else if (partnerData.email === "") {
+      toast.error("Please enter email");
+      setActive(1);
+      return false;
+    } else if (partnerData.agreedTerms === false) {
+      toast.error("Please agree to the declaration");
+      setActive(2);
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   async function SubmitForm() {
-    console.log(partnerData);
+    try {
+      console.log(PerformValidations());
+      if (PerformValidations() == true) {
+        setLoading(true);
+        let workDaysArray = [];
+        partnerData.workingDays.forEach((obj) => {
+          let temp = `${obj.day};${obj.isOpen};${obj.startTime};${obj.endTime}`;
+          workDaysArray.push(temp);
+        });
+
+        let finalPartnerData = {
+          ...partnerData,
+          workingDays: workDaysArray,
+        };
+
+        let res = await axios.post("/api/partner/apply", finalPartnerData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        // if valid email, send email
+
+        if (res.data.success) {
+          let html = ApplicationSuccessTemplates();
+          let to = partnerData.email;
+          let subject = `Hi, ${partnerData.name}! Your application has been received`;
+
+          let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (emailRegex.test(partnerData.email)) {
+            let mailRes = await axios.post(
+              "/api/mail",
+              { to, subject, html },
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+          }
+
+          setActive(3);
+        } else {
+          toast.error(res.data.data);
+        }
+      }
+    } catch (error) {}
+    setLoading(false);
   }
 
   return (
@@ -498,30 +615,40 @@ export default function Apply() {
           </button>
         </div>
         <div className="lg:w-[900px]  bg-white mt-10 border rounded-2xl mx-auto p-6">
-          <StepComponent
-            partnerData={partnerData}
-            setPartnerData={setPartnerData}
-            active={active}
-          />
-          <div className="flex items-center justify-between mt-10">
-            <button
-              disabled={active === 0}
-              onClick={() => active > 0 && setActive(active - 1)}
-              type="button"
-              className="text-sm disabled:cursor-not-allowed disabled:opacity-50 mr-4 text-neutral-600 hover:underline"
-            >
-              Back
-            </button>
-            <Button
-              onClick={() => {
-                active < 2 ? setActive(active + 1) : SubmitForm();
-              }}
-              type="button"
-              className="bg-black text-white rounded-md text-sm"
-            >
-              {active == 2 ? "Submit" : "Next"}
-            </Button>
+          <div
+            style={{
+              pointerEvents: loading ? "none" : "all",
+            }}
+          >
+            <StepComponent
+              partnerData={partnerData}
+              setPartnerData={setPartnerData}
+              active={active}
+            />
           </div>
+          {active < 3 && (
+            <div className="flex items-center justify-between mt-10">
+              <button
+                disabled={active === 0}
+                onClick={() => active > 0 && setActive(active - 1)}
+                type="button"
+                className="text-sm disabled:cursor-not-allowed disabled:opacity-50 mr-4 text-neutral-600 hover:underline"
+              >
+                Back
+              </button>
+              <Button
+                isLoading={loading}
+                isDisabled={loading}
+                onClick={() => {
+                  active < 2 ? setActive(active + 1) : SubmitForm();
+                }}
+                type="button"
+                className="bg-black text-white rounded-md text-sm"
+              >
+                {active == 2 ? "Submit" : "Next"}
+              </Button>
+            </div>
+          )}
         </div>
       </div>
       <Spacer y={50} />

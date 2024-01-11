@@ -11,13 +11,14 @@ const transporter = nodemailer.createTransport({
 });
 
 export default async function handler(req, res) {
+  const { to, subject, html } = req.body;
+  console.log(to, subject, html);
   try {
     const info = await transporter.sendMail({
       from: '"Doctor Doggy" <no-reply@doctordoggy.vet>', // sender address
-      to: "priyangsu26@gmail.com", // list of receivers
-      subject:
-        "This is an extraordinary email sent usign nextjs & nodemailer. 🎊", // Subject line
-      html: `<h1>Hey there! 👋🏽</h1>`,
+      to,
+      subject,
+      html,
     });
     return res.json({ message: "Success" }, { status: 200 });
   } catch (error) {
