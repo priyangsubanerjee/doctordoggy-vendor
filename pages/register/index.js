@@ -3,13 +3,30 @@ import { Icon } from "@iconify/react";
 import { Button, Input, Spacer } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
-import { Autocomplete, AutocompleteItem, Avatar } from "@nextui-org/react";
 
 import Link from "next/link";
 import React from "react";
 
 export default function Apply() {
   const [active, setActive] = React.useState(0);
+  const [partnerData, setPartnerData] = React.useState({
+    name: "",
+    regisNo: "",
+    address: "",
+    pincode: "",
+    city: "",
+    state: "",
+    country: "",
+    landmark: "",
+    phone: "",
+    email: "",
+    doesHaveClinic: false,
+    gstin: "",
+    tradeLicense: "",
+    staffCount: "",
+    workingDays: [],
+  });
+
   const days = [
     "Monday",
     "Tuesday",
@@ -238,48 +255,47 @@ export default function Apply() {
             <Checkbox value="boarding">Boarding</Checkbox>
           </CheckboxGroup>
         </div>
-        <div>
-          <label className="text-sm text-neutral-500" htmlFor="">
-            Store opens at
+        <div className="lg:col-span-2 w-full pt-6">
+          <label className="text-sm text-neutral-500 block pb-2" htmlFor="">
+            Choose working hours
           </label>
-          <Input
-            className="h-12 rounded text-base mt-2"
-            radius="sm"
-            placeholder="Password"
-            defaultValue="09:00"
-            type="time"
-          />
-        </div>
-        <div>
-          <label className="text-sm text-neutral-500" htmlFor="">
-            Store closes at
-          </label>
-          <Input
-            className="h-12 rounded text-base mt-2"
-            radius="sm"
-            defaultValue="22:00"
-            placeholder="Password"
-            type="time"
-          />
-        </div>
-        <div className="lg:col-span-2 w-full pt-2">
-          <CheckboxGroup
-            label={
-              <label className="text-sm text-neutral-500 block pb-2" htmlFor="">
-                Select your working days
-              </label>
-            }
-            orientation="horizontal"
-            color="primary"
-            size="sm"
-          >
-            {days.map((day, index) => (
-              <Checkbox key={index} className="mr-1" value={day}>
-                {day}
-              </Checkbox>
+          <div className="text-sm mt-2">
+            {days.map((day, i) => (
+              <div key={i} className="grid grid-cols-3 gap-3 mt-2">
+                <div className="col-span-1 pt-[1px] flex items-center">
+                  <div className="pt-1">
+                    <Checkbox
+                      defaultSelected={day === "Sunday" ? false : true}
+                    />
+                  </div>
+                  <div className="ml-1">
+                    <p>{day}</p>
+                  </div>
+                </div>
+                <div>
+                  <input
+                    defaultValue="08:00"
+                    className="bg-transparent w-full h-full border px-3 py-2 rounded-lg"
+                    type="time"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div>
+                  <input
+                    defaultValue="21:00"
+                    className="bg-transparent w-full h-full border px-3 py-2 rounded-lg"
+                    size="sm"
+                    type="time"
+                    name=""
+                    id=""
+                  />
+                </div>
+              </div>
             ))}
-          </CheckboxGroup>
+          </div>
         </div>
+
         <div className="lg:col-span-2 pt-5 flex items-start">
           <div className="pt-[2px]">
             <Checkbox
@@ -318,6 +334,8 @@ export default function Apply() {
     }
   };
 
+  async function SubmitForm() {}
+
   return (
     <div className="pt-20 lg:pt-24">
       <div className="relative">
@@ -328,7 +346,7 @@ export default function Apply() {
         />
         <div className="absolute inset-0 w-full h-[300px] bg-gradient-to-b from-white to-transparent"></div>
       </div>
-      <div className="z-10 relative px-4">
+      <div className="relative px-4">
         <h1 className="text-2xl lg:text-3xl font-semibold text-center">
           Apply for partners program
         </h1>
@@ -361,7 +379,9 @@ export default function Apply() {
               Back
             </button>
             <Button
-              onClick={() => active < 2 && setActive(active + 1)}
+              onClick={() => {
+                active < 2 ? setActive(active + 1) : SubmitForm();
+              }}
               type="button"
               className="bg-black text-white rounded-md text-sm"
             >
