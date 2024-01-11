@@ -31,7 +31,7 @@ model Partner {
   staffCount     String?
   workingDays    String[]
   workingHours   String[]
-  service        Service[]
+  services       Service[]
   createdAt      DateTime  @default(now())
 }
 
