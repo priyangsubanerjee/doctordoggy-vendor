@@ -491,6 +491,8 @@ export default function Apply() {
   });
 
   function PerformValidations() {
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (partnerData.name === "") {
       toast.error("Please enter store name");
       setActive(0);
@@ -525,6 +527,10 @@ export default function Apply() {
       return false;
     } else if (partnerData.email === "") {
       toast.error("Please enter email");
+      setActive(1);
+      return false;
+    } else if (emailRegex.test(partnerData.email) == false) {
+      toast.error("Please enter valid email");
       setActive(1);
       return false;
     } else if (partnerData.agreedTerms === false) {
