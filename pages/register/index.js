@@ -519,6 +519,10 @@ export default function Apply() {
       toast.error("Please enter phone number");
       setActive(1);
       return false;
+    } else if (partnerData.phone.length != 10) {
+      toast.error("Please enter valid phone number");
+      setActive(1);
+      return false;
     } else if (partnerData.email === "") {
       toast.error("Please enter email");
       setActive(1);
