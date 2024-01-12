@@ -563,8 +563,6 @@ export default function Apply() {
           },
         });
 
-        // if valid email, send email
-
         if (res.data.success) {
           setActive(3);
         } else {
