@@ -168,7 +168,7 @@ const Contact = ({ partnerData, setPartnerData }) => {
         <Input
           className="h-12 rounded text-base mt-2"
           radius="sm"
-          placeholder="Use country code"
+          placeholder="Do not use country code"
           value={partnerData.phone}
           onChange={(e) => {
             setPartnerData({ ...partnerData, phone: e.target.value });
