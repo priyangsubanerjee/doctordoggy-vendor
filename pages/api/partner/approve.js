@@ -7,13 +7,13 @@ export default async function handler(req, res) {
   const { id } = req.body;
   let { success, data } = await ApprovePartner(id);
   if (success) {
-    let { password, email } = data;
+    let { oneTimePass, email } = data;
     let { success, message } = await sendMail(
       process.env.ZOHO_MAIL,
       process.env.ZOHO_PASS,
       email,
       "Application Approved",
-      ApplicationApproved(email, password)
+      ApplicationApproved(email, oneTimePass)
     );
 
     if (success) {

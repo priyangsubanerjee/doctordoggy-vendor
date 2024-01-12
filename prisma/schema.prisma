@@ -16,6 +16,7 @@ model Partner {
   regisNo        String?
   password       String?
   needPassReset  Boolean   @default(true)
+  oneTimePass    String?
   address        String
   pincode        String
   city           String

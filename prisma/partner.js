@@ -42,14 +42,14 @@ export const ApprovePartner = async (id) => {
       },
       data: {
         verified: true,
-        password: password,
+        oneTimePass: password,
       },
     });
     return {
       success: true,
       data: {
         ...objectUpdated,
-        password: password,
+        oneTimePass: password,
       },
     };
   } catch (error) {
