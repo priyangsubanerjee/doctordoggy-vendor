@@ -1,6 +1,13 @@
 import nodemailer from "nodemailer";
 
-export default async function sendMail(username, pass, to, subject, html) {
+export default async function sendMail(
+  username = "",
+  pass = "",
+  to = "",
+  subject = "Doctor Doggy",
+  html = "",
+  text = ""
+) {
   const transporter = nodemailer.createTransport({
     host: "smtp.zoho.in",
     secure: true,
@@ -12,10 +19,11 @@ export default async function sendMail(username, pass, to, subject, html) {
   });
 
   try {
-    const info = await transporter.sendMail({
+    await transporter.sendMail({
       from: '"Doctor Doggy" <no-reply@doctordoggy.vet>', // sender address
       to,
       subject,
+      text,
       html,
     });
     return {
