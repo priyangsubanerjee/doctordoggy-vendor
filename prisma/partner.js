@@ -32,3 +32,31 @@ export const PartnerApplication = async (partner) => {
     };
   }
 };
+
+export const ApprovePartner = async (id) => {
+  let password = Math.random().toString(36).slice(-8);
+  try {
+    let objectUpdated = await prisma.partner.update({
+      where: {
+        id: id,
+      },
+      data: {
+        verified: true,
+        password: password,
+      },
+    });
+    return {
+      success: true,
+      data: {
+        ...objectUpdated,
+        password: password,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      data: error,
+    };
+  }
+};

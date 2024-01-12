@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { ApplicationSuccessTemplates } from "@/templates/ApplicationSuccess";
+import { ApplicationSuccessTemplates } from "@/templates/Application";
 import { Icon } from "@iconify/react";
 import { Button, Input, Spacer } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";

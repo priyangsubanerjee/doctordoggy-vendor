@@ -15,6 +15,7 @@ model Partner {
   name           String
   regisNo        String?
   password       String?
+  needPassReset  Boolean   @default(true)
   address        String
   pincode        String
   city           String
