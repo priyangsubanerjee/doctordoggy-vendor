@@ -80,6 +80,7 @@ export const ApplicationApproved = (email, password) => {
           font-size: 16px;
           padding: 30px 0;
           padding-left: 30px;
+          padding-bottom: 60px;
         "
       >
         <p style="display: block">
