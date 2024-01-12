@@ -534,7 +534,6 @@ export default function Apply() {
 
   async function SubmitForm() {
     try {
-      console.log(PerformValidations());
       if (PerformValidations() == true) {
         setLoading(true);
         let workDaysArray = [];
@@ -557,23 +556,6 @@ export default function Apply() {
         // if valid email, send email
 
         if (res.data.success) {
-          let html = ApplicationSuccessTemplates();
-          let to = partnerData.email;
-          let subject = `Hi, ${partnerData.name}! Your application has been received`;
-
-          let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (emailRegex.test(partnerData.email)) {
-            let mailRes = await axios.post(
-              "/api/mail",
-              { to, subject, html },
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            );
-          }
-
           setActive(3);
         } else {
           toast.error(res.data.data);
