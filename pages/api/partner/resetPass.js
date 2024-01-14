@@ -1,9 +1,9 @@
 import { ResetPassword } from "@/prisma/partner";
 
 export default async function handler(req, res) {
-  const { email, password } = req.body;
+  const { email, password, browserAgent } = req.body;
 
-  let { success, data } = await ResetPassword(email, password);
+  let { success, data } = await ResetPassword(email, password, browserAgent);
 
   if (success) {
     return res.json({

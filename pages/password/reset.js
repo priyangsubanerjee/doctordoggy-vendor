@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Button, Input } from "@nextui-org/react";
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { authOptions } from "../api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 import toast from "react-hot-toast";
@@ -36,6 +36,27 @@ function ResetPassword({ sessionData }) {
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const [browserAgent, setBrowserAgent] = React.useState(null);
+
+  useEffect(() => {
+    if (browserAgent == null) {
+      if (navigator.userAgent.indexOf("Chrome") != -1) {
+        setBrowserAgent("Chrome");
+      } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+        setBrowserAgent("Firefox");
+      } else if (navigator.userAgent.indexOf("MSIE") != -1) {
+        setBrowserAgent("MSIE");
+      } else if (navigator.userAgent.indexOf("Edge") != -1) {
+        setBrowserAgent("Edge");
+      } else if (navigator.userAgent.indexOf("Safari") != -1) {
+        setBrowserAgent("Safari");
+      } else if (navigator.userAgent.indexOf("Opera") != -1) {
+        setBrowserAgent("Opera");
+      } else {
+        setBrowserAgent("Unknown");
+      }
+    }
+  }, [browserAgent]);
 
   async function handleFormSubmit() {
     if (password.length == 0 && confirmPassword.length == 0) {
@@ -48,6 +69,7 @@ function ResetPassword({ sessionData }) {
           {
             email: sessionData.user.email,
             password,
+            browserAgent,
           },
           {
             headers: {

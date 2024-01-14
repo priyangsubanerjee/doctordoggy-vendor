@@ -1,7 +1,7 @@
 import sendMail from "@/helper/sendMail";
 import prisma from "./prisma";
 import bcrypt from "bcrypt";
-import { LoginSuccess } from "@/templates/Authentication";
+import { LoginSuccess, PassResetSuccess } from "@/templates/Authentication";
 
 export const PartnerApplication = async (partner) => {
   try {
@@ -121,7 +121,7 @@ export const ValidateCredentials = async (email, password) => {
   }
 };
 
-export const AuthenticatePartner = async (email, password) => {
+export const AuthenticatePartner = async (email, password, browserAgent) => {
   let user = await prisma.partner.findUnique({
     where: {
       email: email,
@@ -172,8 +172,8 @@ export const AuthenticatePartner = async (email, password) => {
           process.env.ZOHO_MAIL,
           process.env.ZOHO_PASS,
           user.email,
-          "Login approved",
-          LoginSuccess(user.email)
+          "Login approved 🔓",
+          LoginSuccess(user.email, browserAgent, new Date().toLocaleString())
         );
         return {
           success: true,
@@ -220,8 +220,7 @@ export const FindPartnerByEmail = async (email) => {
   }
 };
 
-export const ResetPassword = async (email, password) => {
-  console.log(email, password);
+export const ResetPassword = async (email, password, browserAgent) => {
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
   try {
@@ -234,6 +233,14 @@ export const ResetPassword = async (email, password) => {
         password: hash,
       },
     });
+
+    await sendMail(
+      process.env.ZOHO_MAIL,
+      process.env.ZOHO_PASS,
+      email,
+      "Password reset success 🔠",
+      PassResetSuccess(email, browserAgent, new Date().toLocaleString())
+    );
     return {
       success: true,
       data: {

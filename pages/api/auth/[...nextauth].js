@@ -10,9 +10,13 @@ export const authOptions = {
       name: "credentials",
       credentials: {},
       async authorize(credentials) {
-        const { email, password } = credentials;
-        console.log("Credentials", email, password);
-        let { success, data } = await AuthenticatePartner(email, password);
+        const { email, password, browserAgent } = credentials;
+        console.log("Credentials", email, password, browserAgent);
+        let { success, data } = await AuthenticatePartner(
+          email,
+          password,
+          browserAgent
+        );
 
         if (success) {
           return {

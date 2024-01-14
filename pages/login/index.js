@@ -4,7 +4,7 @@ import { Button, Input } from "@nextui-org/react";
 import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 
 function Login() {
@@ -12,6 +12,7 @@ function Login() {
   const [email, setEmail] = React.useState("priyangsu26@gmail.com");
   const [password, setPassword] = React.useState("wjtn3xsq");
   const [loading, setLoading] = React.useState(false);
+  const [browserAgent, setBrowserAgent] = React.useState(null);
 
   async function handleLogin() {
     if (email.length != 0 && password.length != 0) {
@@ -33,11 +34,11 @@ function Login() {
                 },
               }
             );
-            console.log(data);
             if (data.success) {
               const authRes = await signIn("credentials", {
                 email,
                 password,
+                browserAgent,
                 redirect: false,
               });
               console.log(authRes);
@@ -63,6 +64,26 @@ function Login() {
     }
     setLoading(false);
   }
+
+  useEffect(() => {
+    if (browserAgent == null) {
+      if (navigator.userAgent.indexOf("Chrome") != -1) {
+        setBrowserAgent("Chrome");
+      } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+        setBrowserAgent("Firefox");
+      } else if (navigator.userAgent.indexOf("MSIE") != -1) {
+        setBrowserAgent("MSIE");
+      } else if (navigator.userAgent.indexOf("Edge") != -1) {
+        setBrowserAgent("Edge");
+      } else if (navigator.userAgent.indexOf("Safari") != -1) {
+        setBrowserAgent("Safari");
+      } else if (navigator.userAgent.indexOf("Opera") != -1) {
+        setBrowserAgent("Opera");
+      } else {
+        setBrowserAgent("Unknown");
+      }
+    }
+  }, [browserAgent]);
 
   return (
     <div className="pt-20 lg:pt-24 ">
