@@ -9,8 +9,8 @@ import toast from "react-hot-toast";
 
 function Login() {
   const session = useSession();
-  const [email, setEmail] = React.useState("priyangsu26@gmail.com");
-  const [password, setPassword] = React.useState("wjtn3xsq");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const [browserAgent, setBrowserAgent] = React.useState(null);
 
