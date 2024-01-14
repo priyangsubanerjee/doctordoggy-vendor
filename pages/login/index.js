@@ -1,10 +1,69 @@
 /* eslint-disable @next/next/no-img-element */
 import { Icon } from "@iconify/react";
 import { Button, Input } from "@nextui-org/react";
+import axios from "axios";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
+import toast from "react-hot-toast";
 
 function Login() {
+  const session = useSession();
+  const [email, setEmail] = React.useState("priyangsu26@gmail.com");
+  const [password, setPassword] = React.useState("wjtn3xsq");
+  const [loading, setLoading] = React.useState(false);
+
+  async function handleLogin() {
+    if (email.length != 0 && password.length != 0) {
+      let emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+
+      if (emailRegex.test(email)) {
+        if (password.length >= 6) {
+          setLoading(true);
+          try {
+            const { data } = await axios.post(
+              "/api/partner/validate",
+              {
+                email,
+                password,
+              },
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+            console.log(data);
+            if (data.success) {
+              const authRes = await signIn("credentials", {
+                email,
+                password,
+                redirect: false,
+              });
+              console.log(authRes);
+              if (!authRes.ok) {
+                console.log(authRes);
+              } else {
+                location.reload();
+              }
+            } else {
+              toast.error(data.message);
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          toast.error("Password must be atleast 6 characters long");
+        }
+      } else {
+        toast.error("Invalid email");
+      }
+    } else {
+      toast.error("Email and password cannot be empty");
+    }
+    setLoading(false);
+  }
+
   return (
     <div className="pt-20 lg:pt-24 ">
       <div className="relative">
@@ -36,7 +95,13 @@ function Login() {
             </Link>
           </button>
         </div>
-        <form className="lg:w-[500px] bg-white  mt-10 border rounded-2xl mx-auto p-6">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleLogin();
+          }}
+          className="md:w-[500px] bg-white  mt-10 border rounded-2xl mx-auto p-6"
+        >
           <div>
             <label className="text-sm text-neutral-500" htmlFor="">
               Enter registered email
@@ -45,10 +110,12 @@ function Login() {
               className="h-12 rounded text-base mt-2"
               radius="sm"
               placeholder="Email"
-              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required={true}
             />
           </div>
-          <div className="mt-3">
+          <div className="mt-5">
             <label className="text-sm text-neutral-500" htmlFor="">
               Enter account password
             </label>
@@ -56,6 +123,8 @@ function Login() {
               className="h-12 rounded text-base mt-2"
               radius="sm"
               placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="flex items-center justify-between mt-10">
@@ -67,6 +136,8 @@ function Login() {
             </button>
             <Button
               type="submit"
+              isLoading={loading}
+              isDisabled={loading}
               className="bg-black text-white rounded-md text-sm"
             >
               Login

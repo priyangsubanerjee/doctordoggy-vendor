@@ -1,4 +1,5 @@
 import prisma from "./prisma";
+import bcrypt from "bcrypt";
 
 export const PartnerApplication = async (partner) => {
   try {
@@ -60,3 +61,186 @@ export const ApprovePartner = async (id) => {
     };
   }
 };
+
+export const ValidateCredentials = async (email, password) => {
+  let user = await prisma.partner.findUnique({
+    where: {
+      email: email,
+    },
+  });
+
+  if (user) {
+    if (user.needPassReset) {
+      if (user.password == null) {
+        if (user.oneTimePass == password) {
+          return {
+            success: true,
+            message: "",
+          };
+        } else {
+          return {
+            success: false,
+            message: "One time password do not match",
+          };
+        }
+      } else {
+        let match = await bcrypt.compare(password, user.password);
+        if (match) {
+          return {
+            success: true,
+            message: "",
+          };
+        } else {
+          return {
+            success: false,
+            message: "Password do not match",
+          };
+        }
+      }
+    } else {
+      let match = await bcrypt.compare(password, user.password);
+      if (match) {
+        return {
+          success: true,
+          message: "",
+        };
+      } else {
+        return {
+          success: false,
+          message: "Password do not match",
+        };
+      }
+    }
+  } else {
+    return {
+      success: false,
+      message: "Email do not exist",
+    };
+  }
+};
+
+export const AuthenticatePartner = async (email, password) => {
+  let user = await prisma.partner.findUnique({
+    where: {
+      email: email,
+    },
+  });
+
+  if (user) {
+    if (user.needPassReset) {
+      if (user.password == null) {
+        if (user.oneTimePass == password) {
+          return {
+            success: true,
+            redirect: "/password/reset",
+            data: {
+              ...user,
+              id: null,
+            },
+          };
+        } else {
+          return {
+            success: false,
+            redirect: null,
+            data: "Authentication error (Password doesnt match)",
+          };
+        }
+      } else {
+        let match = await bcrypt.compare(password, user.password);
+        if (match) {
+          return {
+            success: true,
+            redirect: "/dashboard",
+            data: {
+              ...user,
+              id: null,
+            },
+          };
+        } else {
+          return {
+            success: false,
+            data: "Authentication error (Password do not match)",
+          };
+        }
+      }
+    } else {
+      let match = await bcrypt.compare(password, user.password);
+      if (match) {
+        return {
+          success: true,
+          redirect: "dashboard",
+          data: {
+            ...user,
+            id: null,
+          },
+        };
+      } else {
+        return {
+          success: false,
+          data: "Authentication error (Password do not match)",
+        };
+      }
+    }
+  } else {
+    return {
+      success: false,
+      data: "User does not exist",
+    };
+  }
+};
+
+export const FindPartnerByEmail = async (email) => {
+  let user = await prisma.partner.findUnique({
+    where: {
+      email: email,
+    },
+  });
+  if (user) {
+    return {
+      success: true,
+      data: {
+        ...user,
+        id: null,
+      },
+    };
+  } else {
+    return {
+      success: false,
+      data: "User not found",
+    };
+  }
+};
+
+export const ResetPassword = async (email, password) => {
+  console.log(email, password);
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(password, salt);
+  try {
+    let objectUpdated = await prisma.partner.update({
+      where: {
+        email: email,
+      },
+      data: {
+        needPassReset: false,
+        password: hash,
+      },
+    });
+    return {
+      success: true,
+      data: {
+        ...objectUpdated,
+        id: null,
+        needPassReset: false,
+        password: null,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      data: error,
+    };
+  }
+};
+
+export const DoesNeedPassReset = async (email) => {};
