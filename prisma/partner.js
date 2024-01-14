@@ -1,5 +1,7 @@
+import sendMail from "@/helper/sendMail";
 import prisma from "./prisma";
 import bcrypt from "bcrypt";
+import { LoginSuccess } from "@/templates/Authentication";
 
 export const PartnerApplication = async (partner) => {
   try {
@@ -166,6 +168,13 @@ export const AuthenticatePartner = async (email, password) => {
     } else {
       let match = await bcrypt.compare(password, user.password);
       if (match) {
+        await sendMail(
+          process.env.ZOHO_MAIL,
+          process.env.ZOHO_PASS,
+          user.email,
+          "Login approved",
+          LoginSuccess(user.email)
+        );
         return {
           success: true,
           redirect: "dashboard",

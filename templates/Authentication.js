@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+export const LoginSuccess = (email) => {
+  return `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -19,7 +20,6 @@
     <div
       style="
         max-width: 500px;
-        min-height: 100vh;
         padding: 0;
         margin: 0 auto;
         background-color: white;
@@ -33,7 +33,6 @@
             font-family: Arial, Helvetica, sans-serif;
             font-weight: 600;
             width: fit-content;
-            text-decoration: underline;
           "
         >
           Attenion user
@@ -46,12 +45,12 @@
           "
         >
           Login attemted to your account
-          <span style="color: blue">(priyangsu26@gmail.com)</span> from a new
+          <span style="color: blue">(${email})</span> from a new
           device. If this was you, you can ignore this email. If this was not
           you, please change your password immediately.
         </p>
       </div>
-      <a href="https://doctordoggy.vet">
+            <a href="https://doctordoggy.vet">
         <img
           src="https://res.cloudinary.com/db9kd4qbi/image/upload/v1705222921/doctor-doggy/branding_pjf9ud.png"
           style="width: 100%; margin: 0; padding: 0"
@@ -100,3 +99,5 @@
     </div>
   </body>
 </html>
+`;
+};
