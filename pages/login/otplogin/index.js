@@ -51,21 +51,25 @@ function Login() {
   }
 
   async function handleVerification() {
-    setLoading(true);
-    let authRes = await signIn("credentials", {
-      email,
-      password,
-      browserAgent,
-      mode: "otp",
-      redirect: false,
-    });
-    if (authRes.ok) {
-      toast.success("Login successful");
-      location.reload();
+    if (password.length != 0) {
+      setLoading(true);
+      let authRes = await signIn("credentials", {
+        email,
+        password,
+        browserAgent,
+        mode: "otp",
+        redirect: false,
+      });
+      if (authRes.ok) {
+        toast.success("Login successful");
+        location.reload();
+      } else {
+        toast.error("Invalid OTP");
+      }
+      setLoading(false);
     } else {
-      toast.error("Invalid OTP");
+      toast.error("OTP cannot be empty");
     }
-    setLoading(false);
   }
 
   useEffect(() => {
@@ -92,7 +96,7 @@ function Login() {
     <div className="pt-20 lg:pt-24 ">
       <div className="relative">
         <img
-          src="https://images.pexels.com/photos/7130555/pexels-photo-7130555.jpeg?cs=srgb&dl=pexels-codioful-%28formerly-gradienta%29-7130555.jpg&fm=jpg"
+          src="https://img.freepik.com/premium-vector/new-soft-pastel-blur-gradient-background_92086-57.jpg"
           className="w-full h-[250px] object-cover absolute top-0 inset-x-0"
           alt=""
         />
