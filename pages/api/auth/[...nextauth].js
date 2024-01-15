@@ -2,7 +2,11 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import prisma from "@/prisma/prisma";
-import { AuthenticatePartner, FindPartnerByEmail } from "@/prisma/partner";
+import {
+  AuthenticateOTP,
+  AuthenticatePartner,
+  FindPartnerByEmail,
+} from "@/prisma/partner";
 
 export const authOptions = {
   providers: [
@@ -10,22 +14,38 @@ export const authOptions = {
       name: "credentials",
       credentials: {},
       async authorize(credentials) {
-        const { email, password, browserAgent } = credentials;
-        console.log("Credentials", email, password, browserAgent);
-        let { success, data } = await AuthenticatePartner(
-          email,
-          password,
-          browserAgent
-        );
+        const { email, password, browserAgent, mode } = credentials;
 
-        if (success) {
-          return {
-            name: data.name,
-            email: data.email,
-            needPassReset: data.needPassReset,
-          };
-        } else {
-          return null;
+        if (mode == "password") {
+          let { success, data } = await AuthenticatePartner(
+            email,
+            password,
+            browserAgent
+          );
+          if (success) {
+            return {
+              name: data.name,
+              email: data.email,
+              needPassReset: data.needPassReset,
+            };
+          } else {
+            return null;
+          }
+        } else if (mode == "otp") {
+          let { success, data } = await AuthenticateOTP(
+            email,
+            password,
+            browserAgent
+          );
+          if (success) {
+            return {
+              name: data.name,
+              email: data.email,
+              needPassReset: data.needPassReset,
+            };
+          } else {
+            return null;
+          }
         }
       },
     }),

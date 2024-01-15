@@ -6,6 +6,7 @@ export async function middleware(req) {
   console.log(session);
   if (
     req.nextUrl.pathname === "/login" ||
+    req.nextUrl.pathname === "/login/otplogin" ||
     req.nextUrl.pathname === "/register" ||
     req.nextUrl.pathname === "/"
   ) {
