@@ -151,12 +151,14 @@ function Login() {
             />
           </div>
           <div className="flex items-center justify-between mt-10">
-            <button
-              type="button"
-              className="text-sm mr-4 text-neutral-600 hover:underline"
-            >
-              Forgot password?
-            </button>
+            <Link href="/login/otplogin">
+              <button
+                type="button"
+                className="text-sm mr-4 text-neutral-600 hover:underline"
+              >
+                Forgot password?
+              </button>
+            </Link>
             <Button
               type="submit"
               isLoading={loading}

@@ -97,7 +97,7 @@ export const LoginSuccess = (email, browserAgent, date, mode) => {
           <span>${mode}</span>
         </p>
         <p style="margin-top: 29px; font-weight: 400">
-          Have a great day ahead 😇
+            Have a great day ahead !
         </p>
       </div>
       <section>
@@ -239,7 +239,7 @@ export const PassResetSuccess = (email, device, date) => {
           <span>${date}</span>
         </p>
         <p style="margin-top: 29px; font-weight: 400">
-          Have a great day ahead 😇
+            Have a great day ahead !
         </p>
       </div>
       <section>
@@ -358,7 +358,7 @@ export const OTPSent = (email, otp, browserAgent, date) => {
     <div class="container">
       <div class="messageBox">
         <h1 style="font-size: 25px; font-weight: 600; margin-top: 20px">
-          Login request
+          Login request 🔓
         </h1>
         <p style="font-weight: 400; line-height: 1.9; margin-top: 30px">
           An OTP for login was requested for your account
@@ -387,7 +387,7 @@ export const OTPSent = (email, otp, browserAgent, date) => {
           <span>${date} </span>
         </p>
         <p style="margin-top: 29px; font-weight: 400">
-          Have a great day ahead 😇
+          Have a great day ahead !
         </p>
       </div>
       <section>

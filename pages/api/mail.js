@@ -80,6 +80,7 @@ export default async function handler(req, res) {
         src="https://res.cloudinary.com/db9kd4qbi/image/upload/v1705236418/doctor-doggy/Footer_jfwdjx.png"
         alt=""
       />
+      <p>via HTML code: &#127987;&#8205;&#127752;</p>
       <footer>
         <div class="socials">
           <a class="icon-wrapper" href="">
