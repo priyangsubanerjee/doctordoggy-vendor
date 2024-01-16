@@ -301,8 +301,9 @@ const Services = ({ partnerData, setPartnerData }) => {
           {partnerData.workingDays.map((obj, i) => (
             <div key={i} className="grid grid-cols-3 gap-3 mt-3">
               <div className="col-span-1 pt-[1px] flex items-center">
-                <div className="pt-1">
+                <div className="pt-0">
                   <Checkbox
+                    size="sm"
                     defaultSelected={obj.isOpen}
                     onChange={(e) => {
                       let temp = [...partnerData.workingDays];
