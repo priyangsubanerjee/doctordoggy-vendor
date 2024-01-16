@@ -76,7 +76,7 @@ export const LoginSuccess = (email, browserAgent, date, mode) => {
             margin-top: 20px;
           "
         >
-          Login success 🎉
+          Login success
         </h1>
         <p style="font-weight: 400; line-height: 1.9; margin-top: 30px">
           Login attemted to your account
@@ -222,7 +222,7 @@ export const PassResetSuccess = (email, device, date) => {
             margin-top: 20px;
           "
         >
-          Password reset 🔠
+          Password reset
         </h1>
         <p style="font-weight: 400; line-height: 1.9; margin-top: 30px">
           Password reset requested for
@@ -358,7 +358,7 @@ export const OTPSent = (email, otp, browserAgent, date) => {
     <div class="container">
       <div class="messageBox">
         <h1 style="font-size: 25px; font-weight: 600; margin-top: 20px">
-          Login request 🔓
+          Login request
         </h1>
         <p style="font-weight: 400; line-height: 1.9; margin-top: 30px">
           An OTP for login was requested for your account

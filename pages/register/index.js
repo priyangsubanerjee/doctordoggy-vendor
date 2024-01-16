@@ -359,7 +359,7 @@ const Services = ({ partnerData, setPartnerData }) => {
         <div className="pt-[2px]">
           <Checkbox
             radius="full"
-            color="primary"
+            color="success"
             onValueChange={(checked) => {
               setPartnerData({ ...partnerData, agreedTerms: checked });
             }}
