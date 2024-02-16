@@ -45,11 +45,46 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-4 w-full gap-3">
-          <div className="h-32 bg-neutral-50 rounded"></div>
-          <div className="h-32 bg-neutral-50 rounded"></div>
-          <div className="h-32 bg-neutral-50 rounded"></div>
-          <div className="h-32 bg-neutral-50 rounded"></div>
+        <div className="grid grid-cols-3 w-full gap-3">
+          <div className="p-6 bg-zinc-50 rounded">
+            <Icon
+              className="text-indigo-600"
+              icon="icon-park-outline:fingernail"
+              width="32"
+              height="32"
+            />
+            <div className="flex items-center space-x-2 font-poppins mt-4">
+              <p className="text-sm">Services</p>
+              <h2 className="text-4xl font-semibold">9</h2>
+            </div>
+            <p className="text-xs text-neutral-500 leading-5 mt-3">
+              These are the services that you provide to your customers. You can
+              add, edit, delete and view the services.
+            </p>
+            <div className="flex items-center justify-end">
+              <Icon icon="ph:arrow-right-light" width="24" height="24" />
+            </div>
+          </div>
+          <div className="p-6 bg-zinc-50 rounded">
+            {" "}
+            <Icon
+              className="text-indigo-600"
+              icon="solar:calendar-broken"
+              width="32"
+              height="32"
+            />
+            <div className="flex items-center space-x-2 font-poppins mt-4">
+              <p className="text-sm">Bookings</p>
+              <h2 className="text-3xl font-semibold">91</h2>
+            </div>
+            <p className="text-xs text-neutral-500 leading-5 mt-3">
+              These are the bookings that you have received from your customers.
+              You can view the bookings and manage them.
+            </p>
+            <div className="flex items-center justify-end">
+              <Icon icon="ph:arrow-right-light" width="24" height="24" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
