@@ -34,10 +34,8 @@ function Dashboard() {
           </h2>
           <div className="flex items-start mt-2 md:mt-4">
             <p className="line-clamp-2 ml-1 max-w-[350px] md:max-w-[500px] text-xs md:text-sm md:leading-8 leading-7 text-neutral-600">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur
-              quisquam, debitis ipsam impedit cum assumenda. Tempora, pariatur
-              hic. Nemo esse porro, corporis inventore minima libero veritatis
-              architecto sapiente cupiditate reprehenderit!
+              Shop No - 13 , Kabiguru Sarani . SAIL CO-operative , City Centre ,
+              Durgapur , West Bengal , 713216 , India
             </p>
           </div>
         </div>
@@ -117,6 +115,22 @@ function Dashboard() {
           </div>
           <h2 className="text-sm text-neutral-600 font-medium mt-3">
             Schedule deworming
+          </h2>
+        </div>
+        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+          <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
+            <Icon icon="ph:prescription-fill" width="20" height="20" />
+          </div>
+          <h2 className="text-sm text-neutral-600 font-medium mt-3">
+            Upload prescription
+          </h2>
+        </div>
+        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+          <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
+            <Icon icon="icomoon-free:lab" width="20" height="20" />
+          </div>
+          <h2 className="text-sm text-neutral-600 font-medium mt-3">
+            Upload pathology
           </h2>
         </div>
       </div>
