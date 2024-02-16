@@ -48,8 +48,14 @@ function Dashboard() {
 
   const Services = () => {
     return (
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 mt-6 md:mt-10 px-5 md:px-12">
+      <div className="grid md:grid-cols-2 gap-5 lg:grid-cols-3 mt-6 md:mt-10 px-5 md:px-12">
         <ServiceCard />
+        <div className="flex items-center justify-center bg-neutral-50 rounded-lg cursor-pointer">
+          <Icon icon="fluent:cube-add-20-regular" width="32" height="32" />
+          <span className="ml-3 text-sm font-medium text-neutral-700">
+            Create service
+          </span>
+        </div>
       </div>
     );
   };
@@ -73,6 +79,14 @@ function Dashboard() {
   const QuickActions = () => {
     return (
       <div className="grid grid-cols-2 lg:grid-cols-6 mx-4 lg:mx-16 mt-10 gap-y-8 gap-x-0 md:gap-4">
+        <div className="flex flex-col items-center justify-center py-3">
+          <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
+            <Icon icon="fluent:cube-add-20-regular" width="20" height="20" />
+          </div>
+          <h2 className="text-sm text-center text-neutral-600 font-medium mt-3">
+            Create service
+          </h2>
+        </div>
         <div className="flex flex-col items-center justify-center py-3">
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
             <Icon icon="iconamoon:search" width="20" height="20" />
