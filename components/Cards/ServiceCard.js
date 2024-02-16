@@ -5,7 +5,7 @@ import React from "react";
 function ServiceCard() {
   return (
     <div className="border p-5 rounded-xl">
-      <h2 className="md:text-lg font-semibold">Grooming & Spa</h2>
+      <h2 className="md:text-base font-semibold">Grooming & Spa</h2>
       <p className="text-xs line-clamp-2 leading-6 text-neutral-500 mt-2">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget
         lorem vitae libero.
