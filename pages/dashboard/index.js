@@ -14,7 +14,7 @@ function Dashboard() {
     return (
       <div className="relative px-6  md:px-12">
         <img
-          className="absolute inset-0 h-full w-full opacity-40 md:opacity-50"
+          className="absolute inset-0 h-full w-full"
           src="https://img.freepik.com/premium-photo/white-background-with-blue-background-word-white-it_207225-64.jpg"
           alt=""
         />
