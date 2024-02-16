@@ -8,6 +8,7 @@ import React from "react";
 
 function Dashboard() {
   const session = useSession();
+  const [selectedTab, setSelectedTab] = React.useState("actions");
 
   const GeneralInfo = () => {
     return (
@@ -39,20 +40,6 @@ function Dashboard() {
               architecto sapiente cupiditate reprehenderit!
             </p>
           </div>
-          <div className="flex items-center space-x-2 mt-5 md:mt-8">
-            <div className="flex items-center space-x-1 md:bg-neutral-50 md:px-3 md:py-1 rounded-full">
-              <Icon icon="fluent:call-16-regular" width="24" height="24" />
-              <span className="text-xs md:text-xs text-neutral-700">
-                9647045453
-              </span>
-            </div>
-            <div className="flex items-center space-x-2 bg-neutral-50 px-3 py-1 rounded-full">
-              <Icon icon="iconoir:mail" width="22" height="22" />
-              <span className="text-xs md:text-xs text-neutral-700">
-                priyangsu26@gmail.com
-              </span>
-            </div>
-          </div>
         </div>
         <div className="absolute top-8 md:top-12 right-8 md:right-12">
           <Icon icon="basil:edit-outline" width="23" height="23" />
@@ -61,26 +48,102 @@ function Dashboard() {
     );
   };
 
+  const Services = () => {
+    return (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 mt-6 md:mt-10 px-5 md:px-12">
+        <ServiceCard />
+      </div>
+    );
+  };
+
+  const TabContent = () => {
+    if (selectedTab === "actions") {
+      return <QuickActions />;
+    } else if (selectedTab === "services") {
+      return <Services />;
+    } else if (selectedTab === "gallery") {
+      return (
+        <div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 mt-6 md:mt-10 px-5 md:px-12">
+            <ServiceCard />
+          </div>
+        </div>
+      );
+    }
+  };
+
+  const QuickActions = () => {
+    return (
+      <div className="grid grid-cols-2 lg:grid-cols-6 mx-4 lg:mx-16 mt-10 gap-y-8 gap-x-0 md:gap-4">
+        <div className="flex flex-col items-center justify-center py-3">
+          <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
+            <Icon icon="iconamoon:search" width="20" height="20" />
+          </div>
+          <h2 className="text-sm text-center text-neutral-600 font-medium mt-3">
+            Search a pet
+          </h2>
+        </div>
+        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+          <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
+            <Icon icon="mingcute:add-line" width="20" height="20" />
+          </div>
+          <h2 className="text-sm text-center text-neutral-600 font-medium mt-3">
+            Register a pet
+          </h2>
+        </div>
+        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+          <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
+            <Icon icon="mdi:injection" width="20" height="20" />
+          </div>
+          <h2 className="text-sm text-center text-neutral-600 font-medium mt-3">
+            Schedule vaccination
+          </h2>
+        </div>
+        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+          <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
+            <Icon
+              icon="material-symbols:security-update-good-outline-rounded"
+              width="20"
+              height="20"
+            />
+          </div>
+          <h2 className="text-sm text-neutral-600 font-medium mt-3">
+            Update vaccination
+          </h2>
+        </div>
+        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+          <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
+            <Icon icon="game-icons:medicine-pills" width="20" height="20" />
+          </div>
+          <h2 className="text-sm text-neutral-600 font-medium mt-3">
+            Schedule deworming
+          </h2>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen pt-12 lg:pt-14 md:bg-slate-50">
       <div className="max-w-6xl mx-auto bg-white pb-24">
-        <GeneralInfo />
+        <div className="max-h-[400px]">
+          <GeneralInfo />
+        </div>
         <div>
           <div className="border-b px-2 md:px-12">
             <Tabs
+              className="translate-y-[5.5px]"
               variant="underlined"
-              aria-label="Tabs variants"
-              className="translate-y-[5px]"
+              selectedKey={selectedTab}
+              onSelectionChange={setSelectedTab}
             >
               <Tab key="actions" title="Quick actions" />
               <Tab key="services" title="Services" />
+              <Tab key="gallery" title="Gallery" />
             </Tabs>
           </div>
         </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 mt-6 md:mt-10 px-5 md:px-12">
-          <ServiceCard />
-        </div>
+        <TabContent />
       </div>
     </div>
   );
