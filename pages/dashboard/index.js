@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { Icon } from "@iconify/react";
-import { Button, Tab, Tabs } from "@nextui-org/react";
+import { Button, Switch, Tab, Tabs } from "@nextui-org/react";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
@@ -9,9 +9,9 @@ function Dashboard() {
   const session = useSession();
   console.log(session);
   return (
-    <div className="min-h-screen pt-14 bg-neutral-50">
-      <div className="max-w-6xl mx-auto bg-white px-12 pb-24">
-        <div className="relative">
+    <div className="min-h-screen pt-14 bg-slate-50">
+      <div className="max-w-6xl mx-auto bg-white pb-24">
+        <div className="relative  px-12">
           <img
             className="absolute inset-0 h-full w-full"
             src="https://img.freepik.com/premium-photo/white-background-with-blue-background-word-white-it_207225-64.jpg"
@@ -45,10 +45,41 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        <Tabs variant="underlined" aria-label="Tabs variants">
-          <Tab key="services" title="Services" />
-          <Tab key="actions" title="Actions" />
-        </Tabs>
+
+        <div>
+          <div className="border-b  px-12">
+            <Tabs
+              variant="underlined"
+              aria-label="Tabs variants"
+              className="translate-y-[5px]"
+            >
+              <Tab key="actions" title="Quick actions" />
+              <Tab key="services" title="Services" />
+            </Tabs>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 mt-10  px-12">
+          <div className="border p-5 rounded-xl">
+            <h2 className="text-lg font-semibold">Grooming & Spa</h2>
+            <p className="text-xs line-clamp-2 leading-6 text-neutral-500 mt-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+              eget lorem vitae libero.
+            </p>
+            <div className="mt-4 flex items-center">
+              <p className="text-lg font-bold">₹ 700</p>
+              <div className="flex items-center w-fit ml-8">
+                <Icon
+                  icon="lets-icons:time-atack-light"
+                  width="27"
+                  height="27"
+                />
+                <span className="text-sm ml-1 text-neutral-600">1.2 hours</span>
+              </div>
+              <Switch size="sm" className="ml-auto" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

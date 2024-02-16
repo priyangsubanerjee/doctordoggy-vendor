@@ -21,7 +21,7 @@ function Navbar() {
             <li className="cursor-pointer" onClick={() => router.push("/")}>
               Home
             </li>
-            <li className="cursor-pointer">Services</li>
+            <li className="cursor-pointer">Bookings</li>
             <li className="cursor-pointer">Appointments</li>
             <li className="cursor-pointer">Doctors</li>
             <li className="cursor-pointer">Help</li>
