@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import ServiceCard from "@/components/Cards/ServiceCard";
 import { Icon } from "@iconify/react";
 import { Button, Switch, Tab, Tabs } from "@nextui-org/react";
 import { signOut, useSession } from "next-auth/react";
@@ -12,7 +13,7 @@ function Dashboard() {
     return (
       <div className="relative px-6  md:px-12">
         <img
-          className="absolute inset-0 h-full w-full opacity-50"
+          className="absolute inset-0 h-full w-full opacity-20 md:opacity-50"
           src="https://img.freepik.com/premium-photo/white-background-with-blue-background-word-white-it_207225-64.jpg"
           alt=""
         />
@@ -78,25 +79,7 @@ function Dashboard() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 mt-6 md:mt-10 px-5 md:px-12">
-          <div className="border p-5 rounded-xl">
-            <h2 className="md:text-lg font-semibold">Grooming & Spa</h2>
-            <p className="text-xs line-clamp-2 leading-6 text-neutral-500 mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              eget lorem vitae libero.
-            </p>
-            <div className="mt-4 flex items-center">
-              <p className="text-lg font-bold">₹ 700</p>
-              <div className="flex items-center w-fit ml-8">
-                <Icon
-                  icon="lets-icons:time-atack-light"
-                  width="27"
-                  height="27"
-                />
-                <span className="text-sm ml-1 text-neutral-600">1.2 hours</span>
-              </div>
-              <Switch size="sm" className="ml-auto" />
-            </div>
-          </div>
+          <ServiceCard />
         </div>
       </div>
     </div>
