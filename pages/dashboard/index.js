@@ -126,7 +126,7 @@ function Dashboard() {
   return (
     <div className="min-h-screen pt-12 lg:pt-14 md:bg-slate-50">
       <div className="max-w-6xl mx-auto bg-white pb-24">
-        <div className="max-h-[400px]">
+        <div className="max-h-[270px]">
           <GeneralInfo />
         </div>
         <div>
