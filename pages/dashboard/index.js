@@ -18,7 +18,7 @@ function Dashboard() {
           src="https://img.freepik.com/premium-photo/white-background-with-blue-background-word-white-it_207225-64.jpg"
           alt=""
         />
-        <div className="relative py-8 md:py-16">
+        <div className="relative py-8 md:py-12">
           <div className="flex text-xs items-center space-x-2 w-fit text-neutral-600 border-b border-dashed pb-2">
             <Icon icon="solar:calendar-broken" width="16" height="16" />
             <span>
@@ -161,7 +161,7 @@ function Dashboard() {
         />
         <div className="absolute z-0 inset-0 w-full h-[300px] bg-gradient-to-b from-white to-transparent"></div>
       </div>
-      <div className="top-[38px] bg-white max-w-6xl w-full border rounded-3xl relative mx-auto overflow-hidden">
+      <div className="top-[43px] bg-white max-w-6xl w-full border rounded-3xl relative mx-auto overflow-hidden">
         <div className="max-w-6xl mx-auto pb-10">
           <div className="max-h-[270px]">
             <GeneralInfo />
