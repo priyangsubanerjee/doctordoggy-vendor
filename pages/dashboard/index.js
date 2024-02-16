@@ -49,13 +49,13 @@ function Dashboard() {
   const Services = () => {
     return (
       <div className="grid md:grid-cols-2 gap-5 lg:grid-cols-3 mt-6 md:mt-10 px-5 md:px-12">
-        <ServiceCard />
         <div className="flex items-center justify-center bg-neutral-50 rounded-lg cursor-pointer py-5">
           <Icon icon="fluent:cube-add-20-regular" width="32" height="32" />
           <span className="ml-3 text-sm font-medium text-neutral-700">
             Create service
           </span>
         </div>
+        <ServiceCard />
       </div>
     );
   };
