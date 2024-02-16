@@ -11,49 +11,88 @@ datasource db {
 }
 
 model Partner {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-  regisNo        String?
-  password       String?
-  needPassReset  Boolean   @default(true)
-  oneTimePass    String?
-  address        String
-  pincode        String
-  city           String
-  state          String
-  country        String
-  landmark       String?
-  phone          String
-  email          String?   @unique
-  verified       Boolean   @default(false)
-  doesHaveClinic Boolean   @default(false)
-  gstin          String?
-  tradeLicense   String?
-  images         String[]
-  staffCount     String?
-  workingDays    String[]
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  name             String
+  regisNo          String?
+  password         String?
+  needPassReset    Boolean        @default(true)
+  oneTimePass      String?
+  address          String
+  pincode          String
+  city             String
+  state            String
+  country          String
+  landmark         String?
+  phone            String
+  email            String?        @unique
+  verified         Boolean        @default(false)
+  doesHaveClinic   Boolean        @default(false)
+  gstin            String?
+  tradeLicense     String?
+  images           String[]
+  staffCount       String?
+  workingDays      String[]
   servicesPromised String[]
-  services       Service[]
-  createdAt      DateTime  @default(now())
-  agreedTerms    Boolean  @default(false)
+  services         Service[]
+  createdAt        DateTime       @default(now())
+  agreedTerms      Boolean        @default(false)
+  bookings         Booking[]
+  appointments     Appointments[]
 }
 
 model Service {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  name         String
-  type         String
-  description  String?
-  image        String[]
-  partner      Partner  @relation(fields: [partnerId], references: [id])
-  partnerId String  @db.ObjectId
-  estDuration     String
-  estPrice        Int
-  createdAt    DateTime @default(now())
-  isActive       String?  @default("active")
-  daysActive   String[]
-  hoursActive  String[]
-  isPromoted   Boolean  @default(false)
-  prmotionEndsAt DateTime? 
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  type           String
+  description    String?
+  image          String[]
+  partner        Partner   @relation(fields: [partnerId], references: [id])
+  partnerId      String    @db.ObjectId
+  estDuration    String
+  estPrice       Int
+  createdAt      DateTime  @default(now())
+  isActive       String?   @default("active")
+  daysActive     String[]
+  hoursActive    String[]
+  isPromoted     Boolean   @default(false)
+  prmotionEndsAt DateTime?
+}
+
+model Booking {
+  id                 String    @id @default(auto()) @map("_id") @db.ObjectId
+  type               String
+  Parent             User?     @relation(fields: [parentEmail], references: [email])
+  parentEmail        String?
+  Pet                Pet?      @relation(fields: [petId], references: [id])
+  petId              String?   @db.ObjectId
+  Partner            Partner   @relation(fields: [partnerId], references: [id])
+  partnerId          String    @db.ObjectId
+  dateIn             DateTime
+  dateOut            DateTime
+  timeIn             String
+  timeOut            String
+  status             String
+  confirmedDate      DateTime?
+  confirmedTime      String?
+  doctor             Json?
+  serviceName        String?
+  cancellationReason String?
+  notes              String?
+}
+
+model Appointments {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  date        DateTime
+  time        String
+  status      String
+  Parent      User?    @relation(fields: [parentEmail], references: [email])
+  parentEmail String?
+  Pet         Pet?     @relation(fields: [petId], references: [id])
+  petId       String?  @db.ObjectId
+  Partner     Partner  @relation(fields: [partnerId], references: [id])
+  partnerId   String   @db.ObjectId
+  doctorId    String?
+  createdAt   DateTime @default(now())
 }
 
 model File {
@@ -78,6 +117,8 @@ model User {
   dewormings    Deworming[]
   pathologies   Pathology[]
   tokens        Token[]
+  bookings      Booking[]
+  appointments  Appointments[]
 }
 
 model Pet {
@@ -99,6 +140,9 @@ model Pet {
   prescriptions Prescription[]
   dewormings    Deworming[]
   pathologies   Pathology[]
+  bookings      Booking[]
+  appointments  Appointments[]
+  access        String[]
 }
 
 model Vaccination {
