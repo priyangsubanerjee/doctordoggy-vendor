@@ -152,26 +152,36 @@ function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen pt-12 lg:pt-14 md:bg-slate-50">
-      <div className="max-w-6xl mx-auto bg-white pb-24">
-        <div className="max-h-[270px]">
-          <GeneralInfo />
-        </div>
-        <div>
-          <div className="border-b px-2 md:px-12">
-            <Tabs
-              className="translate-y-[5.5px]"
-              variant="underlined"
-              selectedKey={selectedTab}
-              onSelectionChange={setSelectedTab}
-            >
-              <Tab key="actions" title="Quick actions" />
-              <Tab key="services" title="Services" />
-              <Tab key="gallery" title="Gallery" />
-            </Tabs>
+    <div className="pt-16">
+      <div className="relative">
+        <img
+          src="https://img.freepik.com/premium-vector/holographic-foil-pastel-rainbow-gradient-abstract-soft-pastel-colors-backdrop_961004-334.jpg"
+          className="w-full h-[350px] object-cover absolute top-0 inset-x-0"
+          alt=""
+        />
+        <div className="absolute z-0 inset-0 w-full h-[300px] bg-gradient-to-b from-white to-transparent"></div>
+      </div>
+      <div className="top-[38px] bg-white max-w-6xl w-full border rounded-3xl relative mx-auto overflow-hidden">
+        <div className="max-w-6xl mx-auto pb-10">
+          <div className="max-h-[270px]">
+            <GeneralInfo />
           </div>
+          <div>
+            <div className="border-b px-2 md:px-12">
+              <Tabs
+                className="translate-y-[5.5px]"
+                variant="underlined"
+                selectedKey={selectedTab}
+                onSelectionChange={setSelectedTab}
+              >
+                <Tab key="actions" title="Quick actions" />
+                <Tab key="services" title="Services" />
+                <Tab key="gallery" title="Gallery" />
+              </Tabs>
+            </div>
+          </div>
+          <TabContent />
         </div>
-        <TabContent />
       </div>
     </div>
   );
