@@ -51,9 +51,8 @@ model Service {
   estDuration    String
   estPrice       Int
   createdAt      DateTime  @default(now())
-  isActive       String?   @default("active")
-  daysActive     String[]
-  hoursActive    String[]
+  isActive       Boolean?   @default(true)
+  daysActive     Json?
   isPromoted     Boolean   @default(false)
   prmotionEndsAt DateTime?
 }

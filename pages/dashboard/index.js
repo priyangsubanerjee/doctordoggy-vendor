@@ -79,14 +79,17 @@ function Dashboard() {
   const QuickActions = () => {
     return (
       <div className="grid grid-cols-2 lg:grid-cols-6 mx-4 lg:mx-16 mt-10 gap-y-8 gap-x-0 md:gap-4">
-        <div className="flex flex-col items-center justify-center py-3">
+        <Link
+          href={"/services/create"}
+          className="flex flex-col items-center justify-center py-3"
+        >
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
             <Icon icon="fluent:cube-add-20-regular" width="24" height="24" />
           </div>
           <h2 className="text-sm text-center text-neutral-600 font-medium mt-3">
             Create service
           </h2>
-        </div>
+        </Link>
         <div className="flex flex-col items-center justify-center py-3">
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
             <Icon icon="iconamoon:search" width="20" height="20" />
