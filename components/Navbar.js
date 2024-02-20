@@ -1,6 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { Icon } from "@iconify/react";
-import { Avatar } from "@nextui-org/react";
+import {
+  Avatar,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownSection,
+  DropdownTrigger,
+  User,
+} from "@nextui-org/react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
@@ -38,9 +46,85 @@ function Navbar() {
         )}
 
         <div className="flex items-center">
-          <Link href="/login">
-            <Avatar className="bg-neutral-100" size="sm" />
-          </Link>
+          {session.status == "authenticated" ? (
+            <Dropdown className="rounded-lg z-30">
+              <DropdownTrigger className="outline-none">
+                <Avatar
+                  size="sm"
+                  src="https://cdn-icons-png.flaticon.com/256/149/149071.png"
+                  className="cursor-pointer"
+                />
+              </DropdownTrigger>
+
+              <DropdownMenu
+                onAction={async (key) => {
+                  switch (key) {
+                    case "logout":
+                      await signOut();
+                      location.reload();
+                      break;
+                    case "account":
+                      window.location.href = "/account";
+                      break;
+                    case "pets":
+                      window.location.href = "/pets";
+                      break;
+                    case "notifications":
+                      window.location.href = "/notifications";
+                      break;
+                    default:
+                      break;
+                  }
+                }}
+                aria-label="Custom item styles"
+              >
+                <DropdownSection aria-label="Profile & Actions" showDivider>
+                  <DropdownItem
+                    key="account"
+                    className="h-14 gap-2 opacity-100"
+                  >
+                    <User
+                      name={session?.data?.user?.name}
+                      description={session?.data?.user?.email}
+                      classNames={{
+                        name: "text-neutral-700",
+                        description: "text-default-500",
+                      }}
+                      avatarProps={{
+                        size: "sm",
+                        src: "https://cdn-icons-png.flaticon.com/256/149/149071.png",
+                      }}
+                    />
+                  </DropdownItem>
+                </DropdownSection>
+
+                <DropdownItem className="rounded" key="pets">
+                  Pets
+                </DropdownItem>
+
+                <DropdownItem className="rounded" key="account">
+                  Account
+                </DropdownItem>
+                <DropdownItem className="rounded" key="notifications">
+                  Notifications
+                </DropdownItem>
+                <DropdownItem className="rounded" key="edit">
+                  Report an issue
+                </DropdownItem>
+                <DropdownItem
+                  key="logout"
+                  className="text-danger rounded"
+                  color="danger"
+                >
+                  Logout
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          ) : (
+            <Link href="/login">
+              <Avatar className="bg-neutral-100" size="sm" />
+            </Link>
+          )}
           <button className="ml-5 lg:hidden">
             <Icon height={24} icon="clarity:menu-line" />
           </button>
