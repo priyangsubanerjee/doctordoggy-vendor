@@ -7,9 +7,20 @@ import {
   Input,
   Textarea,
 } from "@nextui-org/react";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
 function SearchPin() {
+  const router = useRouter();
+  const [targetPage, setTargetPage] = React.useState(null);
+
+  // get target page from query
+  useEffect(() => {
+    const { query } = router;
+    if (query?.target) {
+      setTargetPage(query.target);
+    }
+  }, [router]);
   return (
     <div className="pt-16 pb-24">
       <div className="relative">

@@ -91,7 +91,7 @@ function Dashboard() {
           </h2>
         </Link>
         <Link
-          href={"/search/"}
+          href={"/search/pet"}
           className="flex flex-col items-center justify-center py-3"
         >
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
@@ -103,25 +103,26 @@ function Dashboard() {
         </Link>
         <Link
           href={"/pet/register"}
-          className="flex flex-col items-center justify-center py-3"
+          className="flex flex-col items-center justify-center py-3 rounded-lg"
         >
-          <div className="flex flex-col items-center justify-center py-3 rounded-lg">
-            <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
-              <Icon icon="mingcute:add-line" width="20" height="20" />
-            </div>
-            <h2 className="text-sm text-center text-neutral-600 font-medium mt-3">
-              Register a pet
-            </h2>
+          <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
+            <Icon icon="mingcute:add-line" width="20" height="20" />
           </div>
+          <h2 className="text-sm text-center text-neutral-600 font-medium mt-3">
+            Register a pet
+          </h2>
         </Link>
-        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+        <Link
+          href={"/search/pet?target=schedule-vaccination"}
+          className="flex flex-col items-center justify-center py-3 rounded-lg"
+        >
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
             <Icon icon="mdi:injection" width="20" height="20" />
           </div>
           <h2 className="text-sm text-center text-neutral-600 font-medium mt-3">
             Schedule vaccination
           </h2>
-        </div>
+        </Link>
         <div className="flex flex-col items-center justify-center py-3 rounded-lg">
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
             <Icon
