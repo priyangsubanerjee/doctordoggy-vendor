@@ -589,13 +589,10 @@ export default function Apply() {
           Apply for partners program
         </h1>
         <div className="flex items-center justify-center space-x-4 mt-4">
-          <button
-            onClick={() => router.push("/deworming/schedule")}
-            className="flex items-center space-x-2 text-sm"
-          >
+          <div className="flex items-center space-x-2 text-sm">
             <span>Already have an partners account?</span>
             <Link
-              href={"/vaccination/schedule"}
+              href={"/login"}
               className="flex items-center text-blue-600 space-x-2 text-sm hover:underline"
             >
               <span>Login</span>
@@ -603,7 +600,7 @@ export default function Apply() {
                 <Icon icon="formkit:right" />
               </span>
             </Link>
-          </button>
+          </div>
         </div>
         <div className="lg:w-[900px]  bg-white mt-10 border rounded-2xl mx-auto p-6">
           <div
