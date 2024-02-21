@@ -123,7 +123,10 @@ function Dashboard() {
             Schedule vaccination
           </h2>
         </Link>
-        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+        <Link
+          href={"/search/pet?target=update-vaccination"}
+          className="flex flex-col items-center justify-center py-3 rounded-lg"
+        >
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
             <Icon
               icon="material-symbols:security-update-good-outline-rounded"
@@ -134,31 +137,40 @@ function Dashboard() {
           <h2 className="text-sm text-neutral-600 font-medium mt-3">
             Update vaccination
           </h2>
-        </div>
-        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+        </Link>
+        <Link
+          href={"/search/pet?target=schedule-deworming"}
+          className="flex flex-col items-center justify-center py-3 rounded-lg"
+        >
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
             <Icon icon="game-icons:medicine-pills" width="20" height="20" />
           </div>
           <h2 className="text-sm text-neutral-600 font-medium mt-3">
             Schedule deworming
           </h2>
-        </div>
-        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+        </Link>
+        <Link
+          href={"/search/pet?target=upload-prescription"}
+          className="flex flex-col items-center justify-center py-3 rounded-lg"
+        >
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
             <Icon icon="ph:prescription-fill" width="20" height="20" />
           </div>
           <h2 className="text-sm text-neutral-600 font-medium mt-3">
             Upload prescription
           </h2>
-        </div>
-        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+        </Link>
+        <Link
+          href={"/search/pet?target=upload-pathology"}
+          className="flex flex-col items-center justify-center py-3 rounded-lg"
+        >
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
             <Icon icon="icomoon-free:lab" width="20" height="20" />
           </div>
           <h2 className="text-sm text-neutral-600 font-medium mt-3">
             Upload pathology
           </h2>
-        </div>
+        </Link>
       </div>
     );
   };
