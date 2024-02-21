@@ -101,14 +101,19 @@ function Dashboard() {
             Search a pet
           </h2>
         </Link>
-        <div className="flex flex-col items-center justify-center py-3 rounded-lg">
-          <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
-            <Icon icon="mingcute:add-line" width="20" height="20" />
+        <Link
+          href={"/pet/register"}
+          className="flex flex-col items-center justify-center py-3"
+        >
+          <div className="flex flex-col items-center justify-center py-3 rounded-lg">
+            <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
+              <Icon icon="mingcute:add-line" width="20" height="20" />
+            </div>
+            <h2 className="text-sm text-center text-neutral-600 font-medium mt-3">
+              Register a pet
+            </h2>
           </div>
-          <h2 className="text-sm text-center text-neutral-600 font-medium mt-3">
-            Register a pet
-          </h2>
-        </div>
+        </Link>
         <div className="flex flex-col items-center justify-center py-3 rounded-lg">
           <div className="h-12 w-12 flex items-center justify-center rounded-md bg-zinc-50">
             <Icon icon="mdi:injection" width="20" height="20" />
