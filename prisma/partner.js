@@ -198,9 +198,9 @@ export const AuthenticatePartner = async (email, password, browserAgent) => {
                 minute: "numeric",
                 second: "numeric",
                 hour12: true,
-              })
-            ),
-            "Password"
+              }),
+              "Password"
+            )
           );
           return {
             success: true,
