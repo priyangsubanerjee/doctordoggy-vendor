@@ -13,6 +13,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import toast from "react-hot-toast";
 
 function SearchPin() {
   const router = useRouter();
@@ -28,11 +29,16 @@ function SearchPin() {
   }, [router]);
 
   const handleSubmit = async () => {
+    toast.loading("Searching pets...");
     const res = await axios.post("/api/pet/search/accpin", {
       pin: accPin,
     });
+    toast.remove();
     if (res.data.success) {
+      toast.success(res.data.message);
       setPets(res.data.pets);
+    } else {
+      toast.error(res.data.message);
     }
   };
 
@@ -106,7 +112,7 @@ function SearchPin() {
                     setPets([]);
                     setAccPin("");
                   }}
-                  className="text-sm mr-10 text-blue-600"
+                  className="text-sm mr-10 text-blue-600 bg-blue-50/50 px-3 py-2 rounded-md"
                 >
                   Search another
                 </button>
@@ -115,7 +121,13 @@ function SearchPin() {
           )}
           {pets.length == 0 && (
             <>
-              <div className="grid grid-cols-1 gap-4 px-10 mt-6">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSubmit();
+                }}
+                className="grid grid-cols-1 gap-4 px-10 mt-6"
+              >
                 <Input
                   radius="sm"
                   value={accPin}
@@ -126,7 +138,7 @@ function SearchPin() {
                     input: "px-2",
                   }}
                 />
-              </div>
+              </form>
               <div className="flex items-center justify-between px-10 mt-10">
                 <div className="flex items-center w-fit"></div>
                 <div>
@@ -134,7 +146,7 @@ function SearchPin() {
                     Cancel
                   </button>
                   <Button
-                    onClick={handleSubmit}
+                    type="submit"
                     className="bg-black text-white h-fit rounded-md"
                     radius="none"
                   >
