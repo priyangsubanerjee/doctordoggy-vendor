@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import calculateAge from "@/helper/calculateAge";
+import { Icon } from "@iconify/react";
 import {
   Button,
   Select,
@@ -7,20 +9,62 @@ import {
   Input,
   Textarea,
 } from "@nextui-org/react";
+import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
 function SearchPin() {
   const router = useRouter();
+  const [accPin, setAccPin] = React.useState("");
   const [targetPage, setTargetPage] = React.useState(null);
+  const [pets, setPets] = React.useState([]);
 
-  // get target page from query
   useEffect(() => {
     const { query } = router;
     if (query?.target) {
       setTargetPage(query.target);
     }
   }, [router]);
+
+  const handleSubmit = async () => {
+    const res = await axios.post("/api/pet/search/accpin", {
+      pin: accPin,
+    });
+    if (res.data.success) {
+      setPets(res.data.pets);
+    }
+  };
+
+  const PetCard = ({ name, age, image, id }) => {
+    return (
+      <Link href={`/pets/${id}`}>
+        <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-start w-full">
+          <div className="h-20 lg:h-16 w-20 shrink-0 lg:w-16 group rounded-full overflow-hidden">
+            <img
+              src={image}
+              className="h-full w-full object-cover group-hover:scale-110 transition-all"
+              alt=""
+            />
+          </div>
+          <div className="mt-3 lg:mt-0 lg:ml-5 flex flex-col lg:block items-center justify-center">
+            <h2 className="text-slate-800 font-medium text-base text-center lg:text-left">
+              {name}
+            </h2>
+            <p className="text-xs mt-1 text-neutral-600">{age}</p>
+
+            <button className="flex items-center text-blue-600 space-x-2 text-xs hover:underline mt-3">
+              <span>Details</span>
+              <span className="translate-y-[1px]">
+                <Icon icon="formkit:right" />
+              </span>
+            </button>
+          </div>
+        </div>
+      </Link>
+    );
+  };
+
   return (
     <div className="pt-16 pb-24">
       <div className="relative">
@@ -39,28 +83,67 @@ function SearchPin() {
               * pin is provided by pet parent
             </p>
           </div>
-          <div className="grid grid-cols-1 gap-4 px-10 mt-6">
-            <Input
-              radius="sm"
-              label="Account pin"
-              classNames={{
-                label: "ml-2",
-                input: "px-2",
-              }}
-            />
-          </div>
-          <div className="flex items-center justify-between px-10 mt-10">
-            <div className="flex items-center w-fit"></div>
+
+          {pets.length > 0 && (
             <div>
-              <button className="text-sm mr-10 text-neutral-500">Cancel</button>
-              <Button
-                className="bg-black text-white h-fit rounded-md"
-                radius="none"
-              >
-                <div className=" px-3 py-3">Search pets</div>
-              </Button>
+              <div className="grid grid-cols-2 place-content-center px-10 gap-8 mt-10">
+                {pets.map((pet, index) => {
+                  return (
+                    <PetCard
+                      key={index}
+                      name={pet.name}
+                      age={calculateAge(pet.dateOfBirth)}
+                      image={pet.image}
+                      id={pet.id}
+                    />
+                  );
+                })}
+              </div>
+
+              <div className="flex items-center justify-end mt-10">
+                <button
+                  onClick={() => {
+                    setPets([]);
+                    setAccPin("");
+                  }}
+                  className="text-sm mr-10 text-blue-600"
+                >
+                  Search another
+                </button>
+              </div>
             </div>
-          </div>
+          )}
+          {pets.length == 0 && (
+            <>
+              <div className="grid grid-cols-1 gap-4 px-10 mt-6">
+                <Input
+                  radius="sm"
+                  value={accPin}
+                  onChange={(e) => setAccPin(e.target.value.toUpperCase())}
+                  label="Account pin"
+                  classNames={{
+                    label: "ml-2",
+                    input: "px-2",
+                  }}
+                />
+              </div>
+              <div className="flex items-center justify-between px-10 mt-10">
+                <div className="flex items-center w-fit"></div>
+                <div>
+                  <button className="text-sm mr-10 text-neutral-500">
+                    Cancel
+                  </button>
+                  <Button
+                    onClick={handleSubmit}
+                    className="bg-black text-white h-fit rounded-md"
+                    radius="none"
+                  >
+                    <div className=" px-3 py-3">Search pets</div>
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -116,8 +116,10 @@ model User {
   dewormings    Deworming[]
   pathologies   Pathology[]
   tokens        Token[]
+  sharedPets    String[]
   bookings      Booking[]
   appointments  Appointments[]
+  accountPin    String?
 }
 
 model Pet {
@@ -139,9 +141,9 @@ model Pet {
   prescriptions Prescription[]
   dewormings    Deworming[]
   pathologies   Pathology[]
-  bookings      Booking[]
+  sharedWith    String[]
   appointments  Appointments[]
-  access        String[]
+  bookings      Booking[]
 }
 
 model Vaccination {
