@@ -5,7 +5,7 @@ function Meet() {
     setTimeout(() => {}, 3000);
   }, []);
   return (
-    <div className="min-h-screen overflow-auto pt-10 relative">
+    <div className="min-h-screen overflow-auto pt-14 relative">
       <div className="relative">
         <iframe
           id="iframe"
